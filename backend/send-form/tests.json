@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Отправка тестовой заявки",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Тест Тестович",
+        "phone": "+7 999 000 00 00",
+        "city": "Москва",
+        "company": "ООО Тест",
+        "message": "Тестовая заявка",
+        "type": "bottom"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
