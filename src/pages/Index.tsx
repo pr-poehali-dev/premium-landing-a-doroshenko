@@ -10,6 +10,8 @@ const CASES = [
     order: '12 500 ₽',
     tag: 'Производство кофе',
     initial: 'ТО',
+    logo: 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/ef0e2b04-8b16-4d46-b901-82096ef59a94.png',
+    url: 'https://to.coffee/',
   },
   {
     company: 'Промсиз',
@@ -19,6 +21,8 @@ const CASES = [
     order: '14 000 ₽',
     tag: 'Промышленное производство',
     initial: 'ПС',
+    logo: 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/281440e6-d5e7-4017-9759-e2097988d548.jpg',
+    url: 'https://ghsz.ru/',
   },
   {
     company: 'Литмаш М',
@@ -28,6 +32,8 @@ const CASES = [
     order: '25 000 ₽',
     tag: 'Машиностроение',
     initial: 'ЛМ',
+    logo: null,
+    url: 'https://litmashm.ru/',
   },
 ];
 
@@ -263,14 +269,24 @@ export default function Index() {
                 className={`card-case rounded-sm p-8 transition-all duration-700 ${cases.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${0.1 + i * 0.15}s` }}
               >
-                {/* Logo placeholder */}
+                {/* Logo */}
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-14 h-14 rounded-sm flex items-center justify-center font-cormorant text-xl font-bold"
-                    style={{ background: 'linear-gradient(135deg, rgba(201,169,110,0.15), rgba(201,169,110,0.05))', border: '1px solid rgba(201,169,110,0.3)', color: '#C9A96E' }}>
-                    {c.initial}
-                  </div>
+                  <a href={c.url} target="_blank" rel="noopener noreferrer" className="shrink-0 block group">
+                    <div className="w-16 h-16 rounded-sm overflow-hidden flex items-center justify-center"
+                      style={{ background: c.logo ? '#fff' : 'linear-gradient(135deg, rgba(201,169,110,0.15), rgba(201,169,110,0.05))', border: '1px solid rgba(201,169,110,0.25)' }}>
+                      {c.logo ? (
+                        <img src={c.logo} alt={c.company} className="w-full h-full object-contain p-1.5 group-hover:scale-105 transition-transform duration-300" />
+                      ) : (
+                        <span className="font-cormorant text-xl font-bold" style={{ color: '#C9A96E' }}>{c.initial}</span>
+                      )}
+                    </div>
+                  </a>
                   <div>
-                    <p className="font-medium text-off-white text-sm">{c.company}</p>
+                    <a href={c.url} target="_blank" rel="noopener noreferrer"
+                      className="font-medium text-off-white text-sm hover:text-gold transition-colors flex items-center gap-1 group">
+                      {c.company}
+                      <Icon name="ArrowUpRight" size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-gold" />
+                    </a>
                     <p className="text-white/40 text-xs mt-0.5">{c.city}</p>
                   </div>
                 </div>
