@@ -157,7 +157,15 @@ export default function Index() {
       {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-5"
         style={{ background: 'rgba(10,10,10,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(201,169,110,0.1)' }}>
-        <div className="font-cormorant text-lg tracking-widest uppercase gold-text">А. Дорошенко</div>
+        <div className="flex items-center gap-3">
+          <img
+            src="https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/ffd046c4-b35f-40c2-9b83-50f0dd9100ba.png"
+            alt="Андрей Дорошенко"
+            className="w-8 h-8 rounded-full object-cover object-top"
+            style={{ border: '1px solid rgba(201,169,110,0.4)' }}
+          />
+          <div className="font-cormorant text-lg tracking-widest uppercase gold-text">А. Дорошенко</div>
+        </div>
         <nav className="hidden md:flex gap-8 text-sm text-white/50 tracking-wide">
           <a href="#cases" className="hover:text-white transition-colors">Кейсы</a>
           <a href="#about" className="hover:text-white transition-colors">Обо мне</a>
@@ -304,18 +312,18 @@ export default function Index() {
               style={{ transitionDelay: '0.1s' }}>
               <div className="relative">
                 <div className="aspect-[3/4] max-w-sm rounded-sm overflow-hidden"
-                  style={{ background: 'linear-gradient(145deg, #1a1a1a, #141414)', border: '1px solid rgba(201,169,110,0.2)' }}>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                    <div className="w-24 h-24 rounded-full flex items-center justify-center font-cormorant text-4xl font-bold"
-                      style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.3)', color: '#C9A96E' }}>
-                      АД
-                    </div>
-                    <p className="text-white/30 text-xs tracking-widest uppercase">Андрей Дорошенко</p>
-                  </div>
+                  style={{ border: '1px solid rgba(201,169,110,0.25)' }}>
+                  <img
+                    src="https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/42dc42eb-1445-4a0e-9a00-0a3400fe8b64.png"
+                    alt="Андрей Дорошенко"
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
-                {/* Gold accent line */}
+                {/* Gold accent corner */}
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-sm"
                   style={{ border: '1px solid rgba(201,169,110,0.2)', zIndex: -1 }} />
+                <div className="absolute -top-4 -left-4 w-16 h-16 rounded-sm"
+                  style={{ border: '1px solid rgba(201,169,110,0.1)', zIndex: -1 }} />
               </div>
 
               <div className="mt-8 flex flex-col gap-3">
