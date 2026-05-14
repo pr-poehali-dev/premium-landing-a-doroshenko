@@ -33,7 +33,7 @@ def handler(event: dict, context) -> dict:
 
     now = datetime.now().strftime('%d.%m.%Y %H:%M')
 
-    tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '8852572599:AAFDZAgUWAm7AlaIMXp1cumdQe-haoRcRmA')
     tg_chat_id = '5601949122'
     if tg_token:
         form_label = 'Шапка (аудит)' if form_type == 'audit' else 'Нижняя форма'
