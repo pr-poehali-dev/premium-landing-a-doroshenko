@@ -9,6 +9,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
+import urllib.request
 
 
 def handler(event: dict, context) -> dict:
@@ -95,6 +96,32 @@ def handler(event: dict, context) -> dict:
         with smtplib.SMTP_SSL('smtp.mail.ru', 465) as server:
             server.login(sender, smtp_password)
             server.sendmail(sender, recipient, msg.as_string())
+
+    tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    tg_chat_id = '5601949122'
+    if tg_token:
+        form_label = 'Шапка (аудит)' if form_type == 'audit' else 'Нижняя форма'
+        tg_text = (
+            f'📋 *Новая заявка с сайта*\n\n'
+            f'👤 *Имя:* {name}\n'
+            f'📞 *Телефон:* {phone}\n'
+            f'🏙 *Город:* {city}\n'
+            f'🏢 *Компания:* {company}\n'
+            f'📝 *Форма:* {form_label}\n'
+            + (f'💬 *Сообщение:* {message}\n' if message and message != '—' else '')
+            + f'🕐 *Время:* {now}'
+        )
+        tg_payload = json.dumps({
+            'chat_id': tg_chat_id,
+            'text': tg_text,
+            'parse_mode': 'Markdown'
+        }).encode('utf-8')
+        tg_req = urllib.request.Request(
+            f'https://api.telegram.org/bot{tg_token}/sendMessage',
+            data=tg_payload,
+            headers={'Content-Type': 'application/json'}
+        )
+        urllib.request.urlopen(tg_req)
 
     return {
         'statusCode': 200,
