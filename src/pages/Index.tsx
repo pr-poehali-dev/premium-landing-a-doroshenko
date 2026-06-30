@@ -456,6 +456,35 @@ export default function Index() {
                 <span>Записаться на консультацию</span>
                 <Icon name="ArrowRight" size={16} />
               </button>
+
+              {/* Диплом */}
+              <div className="mt-10">
+                <p className="text-xs tracking-[0.3em] uppercase text-white/30 mb-4">Документ о квалификации</p>
+                <a
+                  href="https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/250ca44b-7532-4a19-b907-5442a6964236.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group relative max-w-xs rounded-sm overflow-hidden"
+                  style={{ border: '1px solid rgba(201,169,110,0.25)' }}
+                >
+                  <img
+                    src="https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/250ca44b-7532-4a19-b907-5442a6964236.jpg"
+                    alt="Диплом арбитражного управляющего"
+                    className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    style={{ filter: 'brightness(0.9)' }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: 'rgba(0,0,0,0.5)' }}>
+                    <div className="flex items-center gap-2 text-xs tracking-widest uppercase gold-text">
+                      <Icon name="ZoomIn" size={16} />
+                      <span>Открыть</span>
+                    </div>
+                  </div>
+                </a>
+                <p className="text-white/30 text-xs mt-3">
+                  Диплом о профессиональной переподготовке · Арбитражный управляющий · 2025
+                </p>
+              </div>
             </div>
           </div>
         </div>
