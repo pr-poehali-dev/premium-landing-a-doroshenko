@@ -535,6 +535,33 @@ export default function Index() {
             </div>
           </div>
 
+          {/* Адреса */}
+          <div className={`grid md:grid-cols-2 gap-4 mb-10 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            style={{ transitionDelay: '0.25s' }}>
+            <div className="flex items-start gap-4 p-5 rounded-sm"
+              style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)' }}>
+              <div className="shrink-0 w-8 h-8 rounded-sm flex items-center justify-center mt-0.5"
+                style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.2)' }}>
+                <Icon name="MapPin" size={14} className="text-gold" />
+              </div>
+              <div>
+                <p className="text-xs tracking-widest uppercase text-white/30 mb-1">Владимир</p>
+                <p className="text-off-white text-sm leading-relaxed">просп. Ленина, 29Б, офис 37</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-5 rounded-sm"
+              style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)' }}>
+              <div className="shrink-0 w-8 h-8 rounded-sm flex items-center justify-center mt-0.5"
+                style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.2)' }}>
+                <Icon name="MapPin" size={14} className="text-gold" />
+              </div>
+              <div>
+                <p className="text-xs tracking-widest uppercase text-white/30 mb-1">Москва · м. Курская</p>
+                <p className="text-off-white text-sm leading-relaxed">Территория завода «Арма»</p>
+              </div>
+            </div>
+          </div>
+
           <div className={`transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             style={{ transitionDelay: '0.3s' }}>
             <ContactForm />
