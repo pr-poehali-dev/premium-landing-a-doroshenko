@@ -30,11 +30,14 @@ def handler(event: dict, context) -> dict:
     phone = body.get('phone', '—')
     city = body.get('city', '—')
     company = body.get('company', '—')
+    niche = body.get('niche', '—')
+    revenue = body.get('revenue', '—')
     message = body.get('message', '—')
     form_type = body.get('type', 'unknown')
 
     now = datetime.now().strftime('%d.%m.%Y %H:%M')
-    form_label = 'Шапка (аудит)' if form_type == 'audit' else 'Нижняя форма'
+    form_labels = {'header': 'Шапка (Zoom-диагностика)', 'bottom': 'Нижняя форма', 'audit': 'Шапка (аудит)'}
+    form_label = form_labels.get(form_type, 'Неизвестно')
 
     smtp_user = 'and-doroshe@mail.ru'
     smtp_password = os.environ.get('SMTP_PASSWORD', '')
@@ -51,6 +54,8 @@ def handler(event: dict, context) -> dict:
     <table style="border-collapse: collapse; width: 100%; max-width: 500px;">
         <tr><td style="padding: 8px; font-weight: bold;">Имя:</td><td style="padding: 8px;">{name}</td></tr>
         <tr style="background:#f5f5f5"><td style="padding: 8px; font-weight: bold;">Телефон:</td><td style="padding: 8px;">{phone}</td></tr>
+        <tr><td style="padding: 8px; font-weight: bold;">Ниша / сайт:</td><td style="padding: 8px;">{niche}</td></tr>
+        <tr style="background:#f5f5f5"><td style="padding: 8px; font-weight: bold;">Годовой оборот:</td><td style="padding: 8px;">{revenue}</td></tr>
         <tr><td style="padding: 8px; font-weight: bold;">Город:</td><td style="padding: 8px;">{city}</td></tr>
         <tr style="background:#f5f5f5"><td style="padding: 8px; font-weight: bold;">Компания:</td><td style="padding: 8px;">{company}</td></tr>
         <tr><td style="padding: 8px; font-weight: bold;">Форма:</td><td style="padding: 8px;">{form_label}</td></tr>

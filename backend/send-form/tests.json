@@ -13,9 +13,8 @@
       "body": {
         "name": "Тест Тестович",
         "phone": "+7 999 000 00 00",
-        "city": "Москва",
-        "company": "ООО Тест",
-        "message": "Тестовая заявка",
+        "niche": "производство",
+        "revenue": "30-300 млн",
         "type": "bottom"
       },
       "expectedStatus": 200,
