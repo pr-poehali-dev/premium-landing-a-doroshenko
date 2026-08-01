@@ -71,6 +71,41 @@ const PRICE_L3 = {
   description: 'Комплексная пересборка коммерческого блока, отделов продаж и маркетинга действующих производственных и B2B-бизнесов. Пошаговая перенастройка воронки, CRM и процессов по протоколу действующего антикризисного управляющего.',
 };
 
+const CASES = [
+  {
+    company: 'ООО «Промсиз»',
+    location: 'Гусь-Хрустальный · оборот 120+ млн ₽/год',
+    status: 'Завершён',
+    before: 'Отдел продаж висел на 2 менеджерах-«приемщиках заказов». Компания не управляла планом продаж и структурой продаж.',
+    action: 'Запустили отдел продаж и отдел маркетинга с нуля в течение 6 месяцев. Совокупный бюджет — около 7 млн рублей.',
+    result: 'Рост конверсии в счет до 5%. Вывели 5 новых продавцов и маркетолога за 45 дней. Прирост выручки за первый месяц: +3,2 млн ₽.',
+  },
+  {
+    company: '«Территория Обжарки»',
+    location: 'Обжарка зернового кофе',
+    status: 'Завершён',
+    before: 'Отсутствие отдела продаж и маркетинга.',
+    action: 'Программа на 10 месяцев, инвестиции — 10 млн ₽. Полная пересборка смыслов и регламентов, внедрение контроля отработки возражений.',
+    result: 'Главная победа — запуск нового продукта СТМ для маркетплейсов: рост производства до 120 тонн в месяц.',
+  },
+  {
+    company: 'Сеть пекарен «Добрые Булки»',
+    location: 'Сетевой пищевой ритейл',
+    status: 'Завершён',
+    before: 'Бизнес полностью не оцифрован: нет управленческого учета и системного плана продаж.',
+    action: 'Внедрение iiko и плана продаж на квартал + запуск маркетинга на HR-бренд компании.',
+    result: '28 пекарен к 2026 году — лидер рынка Владимирской области.',
+  },
+  {
+    company: 'Великодворский стеклотарный завод',
+    location: 'Промышленность · стеклотара',
+    status: 'В работе',
+    before: 'Предбанкротное состояние, требовалась комплексная антикризисная программа.',
+    action: 'Внедрение антикризисной программы: пересборка коммерческого блока, контроль процессов и юнит-экономики.',
+    result: 'Проект в активной реализации, итоги — по завершении программы.',
+  },
+];
+
 const LOCATIONS = [
   { city: 'Санкт-Петербург', tag: 'Главный хаб', address: 'м. Чёрная речка, Торжковская улица, д. 5' },
   { city: 'Москва', tag: '', address: 'м. Курская, Территория завода «Арма»' },
@@ -224,6 +259,7 @@ export default function Index() {
   const myths = useInView(0.1);
   const criteria = useInView(0.1);
   const prices = useInView(0.1);
+  const cases = useInView(0.1);
   const telegram = useInView(0.1);
   const about = useInView(0.1);
   const contact = useInView(0.1);
@@ -248,6 +284,7 @@ export default function Index() {
         <nav className="hidden lg:flex gap-6 text-xs text-white/40 tracking-widest uppercase">
           <a href="#myths" className="hover:text-white transition-colors">Методология</a>
           <a href="#prices" className="hover:text-white transition-colors">Стоимость</a>
+          <a href="#cases" className="hover:text-white transition-colors">Кейсы</a>
           <a href="#criteria" className="hover:text-white transition-colors">С кем работаем</a>
           <a href="#about" className="hover:text-white transition-colors">О нас</a>
           <a href="#contact" className="hover:text-white transition-colors">Контакты</a>
@@ -509,7 +546,58 @@ export default function Index() {
         </div>
       </section>
 
-      {/* БЛОК 7 — ДИСКЛЕЙМЕР И TELEGRAM */}
+      {/* БЛОК 7 — РЕАЛИЗОВАННЫЕ КЕЙСЫ */}
+      <section id="cases" ref={cases.ref} className="py-24 px-6 md:px-16 lg:px-24"
+        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className={`mb-16 transition-all duration-700 ${cases.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Доказательство методологии</p>
+            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
+              Результаты пересборки B2B-систем
+            </h2>
+            <div className="section-divider mt-6" />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {CASES.map((c, i) => (
+              <div key={i}
+                className={`p-7 rounded-sm flex flex-col transition-all duration-700 ${cases.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)', transitionDelay: `${0.1 + i * 0.1}s` }}>
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <div>
+                    <p className="text-off-white font-medium text-[15px] leading-snug">{c.company}</p>
+                    <p className="text-xs tracking-widest uppercase text-gold/60 mt-1">{c.location}</p>
+                  </div>
+                  <span className="shrink-0 text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-sm"
+                    style={{
+                      color: c.status === 'В работе' ? '#FACC15' : '#4ADE80',
+                      background: c.status === 'В работе' ? 'rgba(250,204,21,0.1)' : 'rgba(74,222,128,0.1)',
+                      border: c.status === 'В работе' ? '1px solid rgba(250,204,21,0.3)' : '1px solid rgba(74,222,128,0.3)',
+                    }}>
+                    {c.status}
+                  </span>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-[10px] tracking-widest uppercase text-white/30 mb-1.5">Было</p>
+                    <p className="text-white/60 text-sm leading-relaxed">{c.before}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] tracking-widest uppercase text-white/30 mb-1.5">Что сделали</p>
+                    <p className="text-white/60 text-sm leading-relaxed">{c.action}</p>
+                  </div>
+                  <div className="pt-4" style={{ borderTop: '1px solid rgba(201,169,110,0.15)' }}>
+                    <p className="text-[10px] tracking-widest uppercase text-gold/70 mb-1.5">Стало</p>
+                    <p className="text-white/85 text-sm leading-relaxed">{c.result}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* БЛОК 8 — ДИСКЛЕЙМЕР И TELEGRAM */}
       <section ref={telegram.ref} className="py-20 px-6 md:px-16 lg:px-24"
         style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
         <div className="max-w-3xl mx-auto text-center">
@@ -551,7 +639,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* БЛОК 8 — О НАС И КОМАНДЕ */}
+      {/* БЛОК 9 — О НАС И КОМАНДЕ */}
       <section id="about" ref={about.ref} className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -629,7 +717,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* БЛОК 9 — КОНТАКТЫ И ЛОКАЦИИ */}
+      {/* БЛОК 10 — КОНТАКТЫ И ЛОКАЦИИ */}
       <section id="contact" ref={contact.ref} className="py-24 px-6 md:px-16 lg:px-24"
         style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
         <div className="max-w-4xl mx-auto">
