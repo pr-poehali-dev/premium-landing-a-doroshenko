@@ -12,70 +12,70 @@ const REVENUE_OPTIONS = ['До 30 млн', '30–300 млн', 'Более 300 м
 type FormState = { name: string; niche: string; revenue: string; phone: string };
 const EMPTY_FORM: FormState = { name: '', niche: '', revenue: '', phone: '' };
 
-const SHIELD_CARDS = [
-  {
-    icon: 'ShieldAlert',
-    title: 'Главный риск директора — это бездействие',
-    text: 'Если компания идет ко дну, а вы сидели сложив руки — ФНС и кредиторы перешьют все долги ООО на вас лично. Долги по субсидиарке и ФНС не списываются никогда, даже через личное банкротство.',
-  },
-  {
-    icon: 'Wrench',
-    title: 'Внешний антикризисный эксперт',
-    text: 'Чтобы спасти бизнес, нужен независимый, «незамыленный» взгляд B2B-архитектора со стороны. В 90% предбанкротных компаний корень кризиса кроется в развале связки Продукт ➡️ Трафик ➡️ Продажи.',
-  },
+const WHO_ITEMS = [
+  'Компания остановилась в росте и начала откатываться назад: идет отток базы клиентов, падают чеки, а старые связки перестали давать результат.',
+  'Продажи застряли на пассивных «отгрузках»: инициатива только у покупателя, менеджеры работают как приемщики заказов, а маржа сжимается.',
+  'Есть замыленный взгляд на реальность: внутри компании кажется, что «все нормально», но рынок меняется стремительно, конкуренты уходят вперед, и нужно срочно успеть перестроиться.',
+  'Существует риск банкротства и субсидиарки в будущем: если не пересобрать коммерческий блок и юнит-экономику прямо сейчас, завтра бизнес упрется в кассовые разрывы и долги.',
 ];
 
-const CRITERIA = [
+const CRITERIA_IN = [
   { icon: 'Factory', title: 'Профиль', text: 'Малые и средние производственные компании и сложные B2B-услуги.' },
   { icon: 'TrendingUp', title: 'Масштаб бизнеса', text: 'Годовой оборот от 30 млн до 300 млн рублей.' },
   { icon: 'Users', title: 'Инфраструктура', text: 'Наличие действующего (или просевшего) отдела продаж и накопленной клиентской базы.' },
-  { icon: 'Target', title: 'Цель собственника', text: 'Сохранить производство и пересобрать бизнес, а не искать «черные» схемы.' },
+  { icon: 'Target', title: 'Цель собственника', text: 'Запрос на масштабирование, готовность ломать устаревшие схемы и четкое понимание: «как раньше — больше не работает». Вы ищете внешнего B2B-архитектора с полномочиями для радикальной пересборки системы.' },
 ];
 
-const AUDIT_ESSENCE = [
-  { icon: 'Search', title: 'Аудит вашего Продукта', text: 'Анализ юнит-экономики, реальной ценности, прайс-листов и точек, где тихо утекает маржа.' },
-  { icon: 'Swords', title: 'Аудит Продуктов Конкурентов', text: 'Сравнительный препаринг рынка глазами покупателя. Почему выбирают их, а не вас?' },
-  { icon: 'Radio', title: 'Разбор Системы Маркетинга (Трафика)', text: 'Анализ каналов привлечения, сквозной аналитики и качества лидов. Почему маркетинг сливает бюджет, а приводит не тех клиентов?' },
-  { icon: 'Settings', title: 'Аудит Отдела Продаж и Сервиса', text: 'Оценка опрятности коммуникации, проверка воронки CRM, выявление саботажа менеджеров и узких мест в сделках.' },
+const CRITERIA_OUT = [
+  'Стартапы «на салфетке» без продукта и первых продаж.',
+  'Искатели «кнопки бабло», ожидающие, что мы будем звонить за их менеджеров.',
+  'Искатели серых схем — на попытки скрыть криминал не тратьте наше время.',
 ];
 
-const EXPERIENCE = [
-  { icon: 'Factory', name: 'ООО «Великодворский стеклотарный завод»', sector: 'Промышленность', text: 'Оценка коммерческих процессов, аудит воронки B2B-продаж и работа со сложными контрактами.' },
-  { icon: 'Package', name: '«ПромСиз»', sector: 'Декорирование стеклоизделий', text: 'Оптимизация коммерческого блока и анализ конкурентоспособности продуктов.' },
-  { icon: 'Coffee', name: '«Территория Обжарки»', sector: 'Производство и B2B-поставки кофе', text: 'Пересборка маркетинга, настройка B2B-сервиса и оптимизация прайс-листов.' },
-  { icon: 'Cookie', name: 'Сеть пекарен «Добрые Булки»', sector: 'Сетевой пищевой ритейл', text: 'Настройка стандартов управления, оцифровка показателей и контроль операционных процессов.' },
-];
-
-const PRICES = [
+const PRICES_L1 = [
   {
-    tier: '01',
-    title: 'Комплексный Экспресс-Аудит Жизнеспособности',
-    duration: '3–5 дней · включая 2 стратегические сессии',
-    price: '150 000 ₽',
-    description: 'Аудит продукта, конкурентов, маркетинга, воронки ОП + проверка юридических/налоговых рисков.',
-    result: 'Архитектурный чертеж реанимации бизнеса + доказательный щит от субсидиарной ответственности.',
-    cta: 'Заказать Экспресс-Аудит',
-    highlight: true,
+    title: 'Прайс-лист «Лидоруб»',
+    duration: 'Срок: 5 дней · 15 слайдов',
+    price: '15 000 ₽',
+    description: 'Автономный инструмент продаж, который переводит входящие лиды в заказанные счета через мессенджер или почту без лишних соплей менеджера.',
   },
   {
-    tier: '02',
-    title: 'Архитектурный надзор (Контроль)',
-    duration: 'Еженедельное экспертное сопровождение',
-    price: 'от 100 000 до 150 000 ₽ / мес',
-    description: 'Проект внедряет ваша команда. Я бью по рукам за отклонения, контролирую качество и веду компанию по чертежу.',
-    cta: 'Выбрать Архитектурный надзор',
+    title: 'Книга Продукта для менеджеров',
+    duration: 'Срок: от 7 дней',
+    price: 'от 10 000 ₽',
+    description: 'Быстрый онбординг новичков. Ваша база + наш креатив и базовый минимум «конституции продаж». Новый продавец выкладывается со 2-го дня без нытья РОПа.',
   },
   {
-    tier: '03',
-    title: 'Генеральный подряд (Система под ключ)',
-    duration: 'Полное управление пересборкой',
-    price: 'от 450 000 ₽ за проект',
-    description: 'Привлекаю свою проверенную распределенную команду (дизайнеры, CRM-технари, трафик) и сдаю готовый коммерческий конвейер.',
-    cta: 'Запросить расчет под ключ',
+    title: 'Конституция Продаж & Маркетинга',
+    duration: 'Срок: 7 дней · 10 пунктов',
+    price: '15 000 ₽',
+    description: 'Мини-маркетинговая и продажная стратегия прямого действия. 10 жестких решений по пересборке вашей воронки: от УТП и трафика до конкретных действий менеджеров.',
   },
 ];
 
-const CITIES = ['Санкт-Петербург', 'Москва', 'Владимир', 'Нижний Новгород', 'Иваново', 'Рязань', 'Ярославль'];
+const PRICE_L2 = {
+  title: 'Стратегический разбор + Тимбилдинг',
+  duration: 'Комплексный разбор за 1–2 дня',
+  price: 'от 35 000 ₽',
+  modules: [
+    'Аудит продукта компании в форме стратегической сессии с топами и менеджерами.',
+    'Аудит отдела продаж в игровой форме + разбор amoCRM.',
+    'Тимбилдинг в форме игры и точный психологический портрет вашей команды.',
+  ],
+};
+
+const PRICE_L3 = {
+  title: 'Антикризисная программа «5 ШАГОВ»',
+  duration: 'Срок: 7 дней',
+  price: '100 000 ₽',
+  description: 'Комплексная пересборка коммерческого блока, отделов продаж и маркетинга действующих производственных и B2B-бизнесов. Пошаговая перенастройка воронки, CRM и процессов по протоколу действующего антикризисного управляющего.',
+};
+
+const LOCATIONS = [
+  { city: 'Санкт-Петербург', tag: 'Главный хаб', address: 'м. Чёрная речка, Торжковская улица, д. 5' },
+  { city: 'Москва', tag: '', address: 'м. Курская, Территория завода «Арма»' },
+  { city: 'Владимир / Регионы', tag: '', address: 'просп. Ленина, 29Б, офис 37', note: 'Работаем: Нижний Новгород, Иваново, Рязань, Ярославль' },
+];
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -127,7 +127,7 @@ function LeadFields({ form, setForm }: { form: FormState; setForm: React.Dispatc
   );
 }
 
-function Modal({ open, onClose }: { open: boolean; onClose: () => void }) {
+function Modal({ open, onClose, presetTitle }: { open: boolean; onClose: () => void; presetTitle?: string }) {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -135,7 +135,7 @@ function Modal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await sendLead(form, 'header');
+    await sendLead(form, presetTitle || 'header');
     setSent(true);
     setLoading(false);
   };
@@ -154,15 +154,17 @@ function Modal({ open, onClose }: { open: boolean; onClose: () => void }) {
           <div className="p-10 text-center">
             <div className="text-5xl mb-4">✓</div>
             <p className="font-cormorant text-2xl gold-text mb-2">Заявка принята</p>
-            <p className="text-white/60 font-golos text-sm">Андрей свяжется с вами лично в ближайшее время</p>
+            <p className="text-white/60 font-golos text-sm">Мы свяжемся с вами лично в ближайшее время</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-8 flex flex-col gap-4">
-            <h3 className="font-cormorant text-2xl text-off-white mb-1">Zoom-диагностика</h3>
-            <p className="text-white/50 text-sm font-golos mb-2">Андрей лично свяжется с вами и согласует время</p>
+            <h3 className="font-cormorant text-2xl text-off-white mb-1">Консультация</h3>
+            <p className="text-white/50 text-sm font-golos mb-2">
+              {presetTitle ? `Заявка на: ${presetTitle}` : 'Мы лично свяжемся с вами и согласуем время'}
+            </p>
             <LeadFields form={form} setForm={setForm} />
             <button type="submit" disabled={loading} className="btn-gold rounded py-3 text-sm mt-2 disabled:opacity-60">
-              {loading ? 'Отправляем...' : 'Записаться на Zoom-диагностику'}
+              {loading ? 'Отправляем...' : 'Записаться на консультацию'}
             </button>
           </form>
         )}
@@ -189,7 +191,7 @@ function ContactForm() {
       <div className="text-center py-10">
         <div className="text-4xl mb-4">✓</div>
         <p className="font-cormorant text-2xl gold-text mb-2">Заявка принята</p>
-        <p className="text-white/50 text-sm">Андрей свяжется с вами лично в ближайшее время</p>
+        <p className="text-white/50 text-sm">Мы свяжемся с вами лично в ближайшее время</p>
       </div>
     );
   }
@@ -200,7 +202,7 @@ function ContactForm() {
       <div className="md:col-span-2">
         <button type="submit" disabled={loading}
           className="btn-gold rounded-sm py-4 px-12 text-sm tracking-wider uppercase disabled:opacity-60">
-          {loading ? 'Отправляем...' : 'Отправить запрос Архитектору'}
+          {loading ? 'Отправляем...' : 'Отправить заявку'}
         </button>
       </div>
     </form>
@@ -209,17 +211,21 @@ function ContactForm() {
 
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalPreset, setModalPreset] = useState<string | undefined>(undefined);
   const [photoIdx, setPhotoIdx] = useState(0);
 
+  const openModal = (preset?: string) => {
+    setModalPreset(preset);
+    setModalOpen(true);
+  };
+
   const hero = useInView(0.05);
-  const shield = useInView(0.1);
+  const who = useInView(0.1);
+  const myths = useInView(0.1);
   const criteria = useInView(0.1);
-  const essence = useInView(0.1);
-  const experience = useInView(0.1);
-  const result = useInView(0.1);
   const prices = useInView(0.1);
-  const about = useInView(0.1);
   const telegram = useInView(0.1);
+  const about = useInView(0.1);
   const contact = useInView(0.1);
 
   useEffect(() => {
@@ -231,32 +237,31 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-obsidian text-off-white font-golos overflow-x-hidden">
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} presetTitle={modalPreset} />
 
-      {/* HEADER */}
+      {/* БЛОК 1 — МЕНЮ И ШАПКА */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-4"
         style={{ background: 'rgba(8,8,8,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,169,110,0.1)' }}>
         <div className="font-cormorant text-base md:text-lg tracking-widest uppercase gold-text whitespace-nowrap">
-          А. ДОРОШЕНКО <span className="text-white/30 hidden md:inline">// B2B-Архитектура</span>
+          ДОРОШЕНКО <span className="text-white/50">И ПАРТНЁРЫ</span>
         </div>
         <nav className="hidden lg:flex gap-6 text-xs text-white/40 tracking-widest uppercase">
-          <a href="#criteria" className="hover:text-white transition-colors">Критерии</a>
-          <a href="#shield" className="hover:text-white transition-colors">Защита от субсидиарки</a>
-          <a href="#essence" className="hover:text-white transition-colors">Суть аудита</a>
-          <a href="#experience" className="hover:text-white transition-colors">Опыт</a>
+          <a href="#myths" className="hover:text-white transition-colors">Методология</a>
           <a href="#prices" className="hover:text-white transition-colors">Стоимость</a>
-          <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Telegram</a>
+          <a href="#criteria" className="hover:text-white transition-colors">С кем работаем</a>
+          <a href="#about" className="hover:text-white transition-colors">О нас</a>
+          <a href="#contact" className="hover:text-white transition-colors">Контакты</a>
         </nav>
-        <button onClick={() => setModalOpen(true)}
+        <button onClick={() => openModal()}
           className="text-xs tracking-widest uppercase gold-text hover:opacity-70 transition-opacity border border-gold/30 px-4 py-2 hidden md:block">
-          Zoom-диагностика
+          Консультация
         </button>
         <a href="tel:89206200034" className="text-sm gold-text hover:opacity-80 transition-opacity font-medium md:hidden">
           8 920 620-00-34
         </a>
       </header>
 
-      {/* БЛОК 1 — HERO */}
+      {/* БЛОК 2 — HERO */}
       <section ref={hero.ref} className="relative min-h-screen flex items-stretch overflow-hidden pt-16">
         <div className="relative z-10 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-20 w-full md:w-1/2">
           <div className="absolute inset-0 pointer-events-none" style={{
@@ -266,36 +271,32 @@ export default function Index() {
           <div className="relative z-10 max-w-xl">
             <p className={`text-xs tracking-[0.3em] uppercase text-gold/70 mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.1s' }}>
-              Дипломированный арбитражный управляющий · B2B-архитектор
+              Антикризисный управляющий · Коммерческий архитектор
             </p>
 
             <h1 className={`font-cormorant font-light leading-[1.1] mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ fontSize: 'clamp(1.9rem, 4.2vw, 3.6rem)', transitionDelay: '0.2s' }}>
-              Антикризисный аудит и пересборка<br />
-              <span className="gold-gradient">коммерческого мотора предприятия</span>
+              Перезапуск продаж, системный аудит<br />
+              <span className="gold-gradient">и защита активов</span> для B2B<br />
+              и производственных компаний
             </h1>
 
-            <p className={`text-white/65 text-[15px] md:text-base leading-relaxed mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '0.3s' }}>
-              Авторская оценка жизнеспособности бизнеса и синхронизация связки: Продукт ➡️ Трафик ➡️ Продажи. Сохраняю производства, активы и рабочие места.
-            </p>
-
             <div className={`mb-10 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '0.4s' }}>
+              style={{ transitionDelay: '0.35s' }}>
               <div className="pl-5 border-l border-gold/40">
-                <p className="text-gold/80 text-sm leading-relaxed">
-                  Опережая реформу банкротного законодательства: реанимация и рост бизнеса вместо ликвидации.
+                <p className="text-white/65 text-[15px] md:text-base leading-relaxed italic font-light">
+                  «Я знаю, через что вы проходите, потому что сам прошел процедуру банкротства как директор и собственник бизнеса. Мы не занимаемся инфоцыганщиной, "бесплатными чек-листами" и академической теорией. Мы оставляем в вашем бизнесе только твёрдые рабочие инструменты, которые начинают приносить деньги с первого дня».
                 </p>
               </div>
             </div>
 
             <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.5s' }}>
-              <button onClick={() => setModalOpen(true)} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
-                Записаться на Zoom-диагностику
+              <button onClick={() => openModal()} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
+                Записаться на консультацию
               </button>
               <a href="#prices" className="flex items-center justify-center gap-2 px-6 py-4 text-sm tracking-wide text-white/50 hover:text-white transition-colors border border-white/10 rounded-sm hover:border-white/20">
-                Форматы и цены
+                Посмотреть цены
                 <Icon name="ArrowDown" size={15} />
               </a>
             </div>
@@ -319,78 +320,80 @@ export default function Index() {
         </div>
       </section>
 
-      {/* БЛОК 2 — ЮРИДИЧЕСКИЙ ЩИТ */}
-      <section id="shield" ref={shield.ref} className="py-24 px-6 md:px-16 lg:px-24"
+      {/* БЛОК 3 — КО МНЕ ОБРАЩАЮТСЯ */}
+      <section ref={who.ref} className="py-24 px-6 md:px-16 lg:px-24"
         style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
         <div className="max-w-4xl mx-auto">
-          <div className={`mb-14 transition-all duration-700 ${shield.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Юридический щит</p>
+          <div className={`mb-14 transition-all duration-700 ${who.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Ко мне обращаются</p>
             <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Как законно защитить личное имущество<br />от субсидиарной ответственности?
+              Обычно к нам обращаются, когда
             </h2>
             <div className="section-divider mt-6" />
-            <p className="text-white/50 text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto">
-              Главный аргумент для ФНС, банков и судов — это доказанный факт того, что руководитель предпринял все разумные усилия для сохранения производства.
-            </p>
           </div>
-
-          <div className="space-y-5">
-            {SHIELD_CARDS.map((card, i) => (
+          <div className="grid md:grid-cols-2 gap-4">
+            {WHO_ITEMS.map((item, i) => (
               <div key={i}
-                className={`p-7 rounded-sm transition-all duration-700 ${shield.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.15)', transitionDelay: `${0.1 + i * 0.1}s` }}>
-                <div className="flex items-start gap-4">
-                  <div className="shrink-0 w-10 h-10 rounded-sm flex items-center justify-center"
-                    style={{ background: 'rgba(201,169,110,0.12)', border: '1px solid rgba(201,169,110,0.25)' }}>
-                    <Icon name={card.icon} fallback="Star" size={18} className="text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-off-white font-medium text-[15px] mb-2">{card.title}</p>
-                    <p className="text-white/70 text-[15px] leading-relaxed">{card.text}</p>
-                  </div>
-                </div>
+                className={`flex items-start gap-4 p-6 rounded-sm transition-all duration-700 ${who.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)', transitionDelay: `${0.1 + i * 0.1}s` }}>
+                <Icon name="Check" size={16} className="text-gold shrink-0 mt-0.5" />
+                <p className="text-white/75 text-[15px] leading-relaxed">{item}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
 
-            <div className={`p-7 rounded-sm transition-all duration-700 ${shield.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{ background: 'rgba(201,169,110,0.07)', border: '1px solid rgba(201,169,110,0.25)', transitionDelay: '0.3s' }}>
-              <div className="flex items-start gap-4 mb-5">
-                <div className="shrink-0 w-10 h-10 rounded-sm flex items-center justify-center"
-                  style={{ background: 'rgba(201,169,110,0.15)', border: '1px solid rgba(201,169,110,0.3)' }}>
-                  <Icon name="Scale" size={18} className="text-gold" />
-                </div>
-                <p className="text-off-white font-medium text-[15px] mt-2">Двухвекторная защита ваших интересов</p>
-              </div>
-              <div className="grid md:grid-cols-2 gap-4 pl-0 md:pl-14">
-                <div className="p-5 rounded-sm" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <p className="text-xs tracking-widest uppercase text-gold/70 mb-2">Сценарий «Рост»</p>
-                  <p className="text-white/70 text-sm leading-relaxed">Мы находим точки утечки маржи, пересобираем ОП и маркетинг, вытаскиваем бизнес из кассового разрыва и сохраняем рабочие места.</p>
-                </div>
-                <div className="p-5 rounded-sm" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <p className="text-xs tracking-widest uppercase text-gold/70 mb-2">Сценарий «Щит»</p>
-                  <p className="text-white/70 text-sm leading-relaxed">Если реанимация бессмысленна, официальный аудит и внедряемый План оздоровления служат в суде прямым доказательством вашей добросовестности, снимая личные финансовые риски с руководителя.</p>
-                </div>
-              </div>
+      {/* БЛОК 4 — РЫНОЧНЫЕ МИФЫ */}
+      <section id="myths" ref={myths.ref} className="py-24 px-6 md:px-16 lg:px-24">
+        <div className="max-w-4xl mx-auto">
+          <div className={`mb-14 transition-all duration-700 ${myths.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Смысловой сдвиг</p>
+            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
+              Почему чек-листы и самодиагностика<br />больше не работают
+            </h2>
+            <div className="section-divider mt-6" />
+          </div>
+          <div className={`space-y-5 transition-all duration-700 ${myths.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            style={{ transitionDelay: '0.15s' }}>
+            <div className="p-7 rounded-sm"
+              style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.15)' }}>
+              <p className="text-white/75 text-[15px] leading-relaxed">
+                Ни бесплатные чек-листы из интернета, ни внутренние «самопроверки» силком не решат проблему застрявшего бизнеса. Когда внутри компании взгляд замылен, собственник и команда просто не видят собственных «дыр».
+              </p>
+            </div>
+            <div className="p-7 rounded-sm"
+              style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.15)' }}>
+              <p className="text-white/75 text-[15px] leading-relaxed">
+                Как и при серьезной болезни, бизнесу требуется вмешательство внешнего управляющего.
+              </p>
+            </div>
+            <div className="p-7 rounded-sm"
+              style={{ background: 'rgba(201,169,110,0.07)', border: '1px solid rgba(201,169,110,0.3)' }}>
+              <p className="text-off-white text-[15px] leading-relaxed">
+                Человека со стороны, который заходит на предприятие, без иллюзий и корпоративных реверансов проводит скоринг системы, ставит точный диагноз и руками внедряет жесткие, рабочие инструменты.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* БЛОК 3 — ФИЛЬТР КЛИЕНТОВ */}
-      <section id="criteria" ref={criteria.ref} className="py-24 px-6 md:px-16 lg:px-24">
+      {/* БЛОК 5 — С КЕМ МЫ РАБОТАЕМ */}
+      <section id="criteria" ref={criteria.ref} className="py-24 px-6 md:px-16 lg:px-24"
+        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
         <div className="max-w-4xl mx-auto">
           <div className={`mb-14 transition-all duration-700 ${criteria.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Квалификация</p>
             <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              С кем я работаю
+              Критерии входа в проект
             </h2>
             <div className="section-divider mt-6" />
             <p className="text-white/50 text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto">
-              Я захожу на предприятия строго при наличии следующих критериев:
+              Мы заходим на предприятия строго при наличии следующих критериев:
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {CRITERIA.map((item, i) => (
+          <div className="grid md:grid-cols-2 gap-4 mb-10">
+            {CRITERIA_IN.map((item, i) => (
               <div key={i}
                 className={`flex items-start gap-4 p-6 rounded-sm transition-all duration-700 ${criteria.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                 style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)', transitionDelay: `${0.1 + i * 0.1}s` }}>
@@ -405,165 +408,151 @@ export default function Index() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* БЛОК 4 — СУТЬ АУДИТА */}
-      <section id="essence" ref={essence.ref} className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
-        <div className="max-w-5xl mx-auto">
-          <div className={`mb-16 transition-all duration-700 ${essence.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Методология</p>
-            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Мой аудит — это не банальная<br />
-              <span className="gold-gradient">прослушка звонков</span>
-            </h2>
-            <div className="section-divider mt-6" />
-            <p className="text-white/50 text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto">
-              Это глубокая инженерная препаровка коммерческого блока по 4 ключевым направлениям:
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {AUDIT_ESSENCE.map((step, i) => (
-              <div key={i}
-                className={`p-7 rounded-sm transition-all duration-700 ${essence.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ background: 'rgba(201,169,110,0.03)', border: '1px solid rgba(201,169,110,0.1)', transitionDelay: `${0.1 + i * 0.08}s` }}>
-                <div className="w-10 h-10 rounded-sm flex items-center justify-center mb-5"
-                  style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.2)' }}>
-                  <Icon name={step.icon} fallback="Star" size={18} className="text-gold" />
+          <div className={`p-7 rounded-sm transition-all duration-700 ${criteria.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', transitionDelay: '0.5s' }}>
+            <p className="text-xs tracking-widest uppercase text-white/40 mb-4">С кем мы НЕ работаем</p>
+            <div className="space-y-3">
+              {CRITERIA_OUT.map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <Icon name="X" size={14} className="text-white/30 shrink-0 mt-1" />
+                  <p className="text-white/50 text-sm leading-relaxed">{item}</p>
                 </div>
-                <p className="text-off-white font-medium text-sm mb-2">{step.title}</p>
-                <p className="text-white/50 text-sm leading-relaxed">{step.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* БЛОК 5 — ОПЫТ */}
-      <section id="experience" ref={experience.ref} className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-5xl mx-auto">
-          <div className={`mb-14 transition-all duration-700 ${experience.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Подтвержденный опыт</p>
-            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Опыт работы с реальным сектором:<br />от сетевого ритейла до стеклотарных заводов
-            </h2>
-            <div className="section-divider mt-6" />
-            <p className="text-white/50 text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto">
-              Адаптирую коммерческую архитектуру под особенности конкретной отрасли.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {EXPERIENCE.map((item, i) => (
-              <div key={i}
-                className={`p-7 rounded-sm transition-all duration-700 ${experience.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)', transitionDelay: `${0.1 + i * 0.1}s` }}>
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
-                    style={{ background: 'rgba(201,169,110,0.12)', border: '1px solid rgba(201,169,110,0.3)' }}>
-                    <Icon name={item.icon} fallback="Building2" size={19} className="text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-off-white font-medium text-[15px] leading-snug">{item.name}</p>
-                    <p className="text-xs tracking-widest uppercase text-gold/60 mt-1">{item.sector}</p>
-                  </div>
-                </div>
-                <p className="text-white/60 text-sm leading-relaxed">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* БЛОК 6 — РЕЗУЛЬТАТ И СЦЕНАРИИ */}
-      <section ref={result.ref} className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
-        <div className="max-w-4xl mx-auto">
-          <div className={`mb-14 transition-all duration-700 ${result.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Что на выходе</p>
-            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Двухвекторный вердикт<br />жизнеспособности
-            </h2>
-            <div className="section-divider mt-6" />
-            <p className="text-white/50 text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto">
-              По итогам 3–5 дневного аудита вы получаете не размытый отчет, а официальное заключение B2B-Архитектора:
-            </p>
-          </div>
-          <div className={`grid md:grid-cols-2 gap-5 transition-all duration-700 ${result.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-            style={{ transitionDelay: '0.15s' }}>
-            <div className="p-8 rounded-sm" style={{ background: 'rgba(201,169,110,0.07)', border: '1px solid rgba(201,169,110,0.3)' }}>
-              <div className="flex items-center gap-3 mb-4">
-                <Icon name="TrendingUp" size={20} className="text-gold" />
-                <p className="text-xs tracking-widest uppercase gold-text">Сценарий А · Бизнес «Живой»</p>
-              </div>
-              <p className="text-white/75 text-[15px] leading-relaxed">
-                Вы получаете Архитектурный Чертеж Реанимации — пошаговый план синхронизации маркетинга и ОП с прогнозируемым ростом валовой прибыли на <span className="text-gold font-medium">20% от месяца к месяцу</span>.
-              </p>
-            </div>
-            <div className="p-8 rounded-sm" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <div className="flex items-center gap-3 mb-4">
-                <Icon name="ShieldOff" size={20} className="text-white/40" />
-                <p className="text-xs tracking-widest uppercase text-white/40">Сценарий Б · Бизнес «Труп»</p>
-              </div>
-              <p className="text-white/60 text-[15px] leading-relaxed">
-                Я честно говорю вам об этом, сберегая ваши миллионы на бессмысленное лечение, и аккуратно передаю проверенным коллегам-арбитражникам для безопасного выхода без рисков субсидиарной ответственности.
-              </p>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* БЛОК 7 — СТОИМОСТЬ */}
+      {/* БЛОК 6 — ПРОДУКТОВАЯ ВИТРИНА */}
       <section id="prices" ref={prices.ref} className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <div className={`mb-16 transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Продуктовая матрица</p>
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Инвестиции</p>
             <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Форматы работы и стоимости
+              Фиксированные чеки. Никакой воды.<br />Только материальные следы в бизнесе.
             </h2>
             <div className="section-divider mt-6" />
           </div>
-          <div className="grid md:grid-cols-3 gap-6 mb-8 items-stretch">
-            {PRICES.map((item, i) => (
+
+          {/* Уровень 1 */}
+          <div className={`mb-6 flex items-center gap-3 transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#4ADE80' }} />
+            <p className="text-xs tracking-widest uppercase text-white/50">Уровень 1 · Твёрдые следы (быстрый старт / без риска)</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-14">
+            {PRICES_L1.map((item, i) => (
               <div key={i}
                 className={`p-8 rounded-sm flex flex-col transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{
-                  background: item.highlight ? 'rgba(201,169,110,0.06)' : 'rgba(201,169,110,0.03)',
-                  border: item.highlight ? '1px solid rgba(201,169,110,0.3)' : '1px solid rgba(201,169,110,0.1)',
-                  transitionDelay: `${0.1 + i * 0.12}s`
-                }}>
-                <p className="text-xs tracking-widest uppercase text-white/30 mb-4">{item.tier} · {item.duration}</p>
+                style={{ background: 'rgba(201,169,110,0.03)', border: '1px solid rgba(201,169,110,0.1)', transitionDelay: `${0.1 + i * 0.1}s` }}>
+                <p className="text-xs tracking-widest uppercase text-white/30 mb-4">{item.duration}</p>
                 <p className="text-off-white font-medium text-[15px] mb-4 leading-snug">{item.title}</p>
                 <p className="font-cormorant text-3xl gold-text font-semibold mb-5">{item.price}</p>
-                <p className="text-white/50 text-sm leading-relaxed mb-4">{item.description}</p>
-                {item.result && (
-                  <p className="text-white/70 text-sm leading-relaxed flex-1 pt-4" style={{ borderTop: '1px solid rgba(201,169,110,0.15)' }}>
-                    {item.result}
-                  </p>
-                )}
-                {!item.result && <div className="flex-1" />}
-                <button onClick={() => setModalOpen(true)}
+                <p className="text-white/50 text-sm leading-relaxed flex-1">{item.description}</p>
+                <button onClick={() => openModal(item.title)}
                   className="mt-6 text-xs tracking-widest uppercase gold-text hover:opacity-70 transition-opacity flex items-center gap-2">
-                  {item.cta} <Icon name="ArrowRight" size={13} />
+                  Записаться <Icon name="ArrowRight" size={13} />
                 </button>
               </div>
             ))}
           </div>
-          <div className={`p-6 rounded-sm transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-            style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)', transitionDelay: '0.45s' }}>
-            <div className="flex items-start gap-4">
+
+          {/* Уровень 2 */}
+          <div className={`mb-6 flex items-center gap-3 transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FACC15' }} />
+            <p className="text-xs tracking-widest uppercase text-white/50">Уровень 2 · Глубокое знакомство (погружение в команду)</p>
+          </div>
+          <div className={`mb-14 p-8 rounded-sm transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{ background: 'rgba(250,204,21,0.05)', border: '1px solid rgba(250,204,21,0.2)' }}>
+            <div className="grid md:grid-cols-[1fr_auto] gap-6 items-start mb-6">
+              <div>
+                <p className="text-xs tracking-widest uppercase text-white/30 mb-3">{PRICE_L2.duration}</p>
+                <p className="text-off-white font-medium text-lg mb-2">{PRICE_L2.title}</p>
+              </div>
+              <p className="font-cormorant text-4xl gold-text font-semibold">{PRICE_L2.price}</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              {PRICE_L2.modules.map((m, i) => (
+                <div key={i} className="p-4 rounded-sm flex items-start gap-3"
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                  <span className="text-gold/70 text-xs font-medium shrink-0 mt-0.5">0{i + 1}</span>
+                  <p className="text-white/65 text-sm leading-relaxed">{m}</p>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => openModal(PRICE_L2.title)}
+              className="text-xs tracking-widest uppercase gold-text hover:opacity-70 transition-opacity flex items-center gap-2">
+              Записаться <Icon name="ArrowRight" size={13} />
+            </button>
+          </div>
+
+          {/* Уровень 3 */}
+          <div className={`mb-6 flex items-center gap-3 transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
+            <p className="text-xs tracking-widest uppercase text-white/50">Уровень 3 · Антикризисная программа</p>
+          </div>
+          <div className={`p-8 rounded-sm transition-all duration-700 ${prices.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{ background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.35)' }}>
+            <div className="grid md:grid-cols-[1fr_auto] gap-6 items-start mb-5">
+              <div>
+                <p className="text-xs tracking-widest uppercase text-white/30 mb-3">{PRICE_L3.duration}</p>
+                <p className="text-off-white font-medium text-lg mb-2">{PRICE_L3.title}</p>
+              </div>
+              <p className="font-cormorant text-4xl gold-text font-semibold">{PRICE_L3.price}</p>
+            </div>
+            <p className="text-white/65 text-[15px] leading-relaxed mb-6 max-w-2xl">{PRICE_L3.description}</p>
+            <button onClick={() => openModal(PRICE_L3.title)}
+              className="text-xs tracking-widest uppercase gold-text hover:opacity-70 transition-opacity flex items-center gap-2">
+              Записаться <Icon name="ArrowRight" size={13} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* БЛОК 7 — ДИСКЛЕЙМЕР И TELEGRAM */}
+      <section ref={telegram.ref} className="py-20 px-6 md:px-16 lg:px-24"
+        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+        <div className="max-w-3xl mx-auto text-center">
+          <div className={`mb-10 p-6 rounded-sm transition-all duration-700 ${telegram.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)' }}>
+            <div className="flex items-start gap-4 text-left">
               <Icon name="Info" size={16} className="text-white/30 shrink-0 mt-0.5" />
               <p className="text-white/40 text-sm leading-relaxed">
-                <span className="text-white/60">Внимание:</span> В месяц я беру в личное сопровождение строго не более 3 компаний. Если вы ищете «черные» схемы или хотите скрыть криминал — не тратьте время, нам не по пути.
+                <span className="text-white/60">Внимание:</span> В личное сопровождение мы берем строго не более 3 компаний в месяц.
               </p>
+            </div>
+          </div>
+
+          <div className={`transition-all duration-700 ${telegram.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Бесплатно</p>
+            <h2 className="font-cormorant text-3xl md:text-4xl text-off-white font-light mb-6">
+              Не готовы к платным продуктам?<br />Читайте наши B2B-разборы бесплатно
+            </h2>
+            <p className="text-white/50 text-[15px] leading-relaxed mb-10 max-w-2xl mx-auto">
+              В своем канале я без купюр и юридической воды разбираю реальные кейсы: как налоговая находит скрытые связи, почему летят отделы продаж и как спасать юнит-экономику до субсидиарки.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 px-7 py-4 rounded-sm hover:opacity-80 transition-opacity"
+                style={{ background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.25)' }}>
+                <Icon name="Send" size={16} className="text-gold" />
+                <span className="text-off-white text-sm">Андрей Дорошенко | Антикризисные разборы</span>
+                <Icon name="ArrowUpRight" size={14} className="text-gold/50" />
+              </a>
+              <a href="https://vk.com/a.doroshenko87" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 px-7 py-4 rounded-sm hover:opacity-80 transition-opacity"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <Icon name="Users" size={16} className="text-white/50" />
+                <span className="text-white/60 text-sm">ВКонтакте</span>
+                <Icon name="ArrowUpRight" size={14} className="text-white/30" />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* БЛОК 8 — ОБО МНЕ */}
-      <section id="about" ref={about.ref} className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+      {/* БЛОК 8 — О НАС И КОМАНДЕ */}
+      <section id="about" ref={about.ref} className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className={`transition-all duration-700 ${about.inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
@@ -591,20 +580,20 @@ export default function Index() {
 
             <div className={`transition-all duration-700 ${about.inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
               style={{ transitionDelay: '0.2s' }}>
-              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Обо мне</p>
+              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">О нас и команде</p>
               <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-                Андрей<br />Дорошенко
+                Андрей Дорошенко<br />и партнёры
               </h2>
-              <p className="text-white/50 text-sm mt-4">Дипломированный арбитражный управляющий, B2B-архитектор коммерческих систем</p>
+              <p className="text-white/50 text-sm mt-4">Дипломированный арбитражный управляющий, коммерческий архитектор и специалист по пересборке B2B-систем</p>
               <div className="w-12 h-px bg-gold mb-8 mt-6" />
               <div className="space-y-5 text-white/65 leading-relaxed text-[15px]">
-                <p>Сам прошел процедуру банкротства в качестве директора и собственника, поэтому знаю изнанку процессов и кассовых разрывов изнутри, а не по учебникам.</p>
-                <p>Специализируюсь на оцифровке бизнес-процессов, перестройке юнит-экономики и синхронизации маркетинга с продажами.</p>
-                <p>Моя задача — зайти на предприятие, спасти продукт, защитить личные активы владельца и выстроить безопасную B2B-стратегию роста.</p>
+                <p>Сам прошел процедуру банкротства в качестве директора и собственника, поэтому знаю изнанку процесса не по учебникам.</p>
+                <p>«Дорошенко и партнёры» — это синергия персональной ответственности коммерческого архитектора и работы команды профильных экспертов (маркетологов, директологов, B2B-копирайтеров и разработчиков).</p>
+                <p>Я лично отвечу за смыслы, юнит-экономику и архитектуру вашего проекта, а моя команда обеспечит безупречное техническое воплощение.</p>
               </div>
-              <button onClick={() => setModalOpen(true)}
+              <button onClick={() => openModal()}
                 className="mt-10 flex items-center gap-3 text-sm tracking-wider uppercase gold-text hover:opacity-70 transition-opacity">
-                <span>Записаться на Zoom-диагностику</span>
+                <span>Записаться на консультацию</span>
                 <Icon name="ArrowRight" size={16} />
               </button>
 
@@ -627,7 +616,7 @@ export default function Index() {
                     style={{ background: 'rgba(0,0,0,0.5)' }}>
                     <div className="flex items-center gap-2 text-xs tracking-widest uppercase gold-text">
                       <Icon name="ZoomIn" size={16} />
-                      <span>Посмотреть диплом</span>
+                      <span>Открыть документ</span>
                     </div>
                   </div>
                 </a>
@@ -640,51 +629,26 @@ export default function Index() {
         </div>
       </section>
 
-      {/* БЛОК 9 — TELEGRAM */}
-      <section ref={telegram.ref} className="py-20 px-6 md:px-16 lg:px-24">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className={`transition-all duration-700 ${telegram.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Запасной аэродром</p>
-            <h2 className="font-cormorant text-3xl md:text-4xl text-off-white font-light mb-6">
-              Не готовы к Zoom-диагностике прямо сейчас?
-            </h2>
-            <p className="text-white/50 text-[15px] leading-relaxed mb-10 max-w-2xl mx-auto">
-              Читайте мои B2B-разборы бесплатно в Telegram. Без купюр и маркетинговой воды разбираю реальные кейсы: как юнит-экономика вылетает в минус, почему саботируются продажи и как сохранять предприятия до вмешательства ФНС.
-            </p>
-            <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-7 py-4 rounded-sm hover:opacity-80 transition-opacity"
-              style={{ background: 'rgba(201,169,110,0.08)', border: '1px solid rgba(201,169,110,0.25)' }}>
-              <Icon name="Send" size={16} className="text-gold" />
-              <span className="text-off-white text-sm">Читать B2B-разборы в Telegram</span>
-              <Icon name="ArrowUpRight" size={14} className="text-gold/50" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* БЛОК 10 — КОНТАКТЫ */}
+      {/* БЛОК 9 — КОНТАКТЫ И ЛОКАЦИИ */}
       <section id="contact" ref={contact.ref} className="py-24 px-6 md:px-16 lg:px-24"
         style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-14 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Связаться</p>
             <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Запишитесь на первичную<br />Zoom-диагностику
+              Связаться и записаться<br />на B2B-продукты
             </h2>
             <div className="section-divider mt-6" />
-            <p className="text-white/50 text-[15px] leading-relaxed mt-6 max-w-xl mx-auto">
-              30 минут. Разберем вашу текущую ситуационную карту, оценим ключевые метрики и поймем, есть ли у нас взаимный фит.
-            </p>
           </div>
 
-          <div className={`grid md:grid-cols-2 gap-8 mb-12 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          <div className={`grid md:grid-cols-3 gap-8 mb-12 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             style={{ transitionDelay: '0.15s' }}>
             <div>
               <p className="text-xs tracking-widest uppercase text-white/30 mb-5">Контакты</p>
               <div className="space-y-4">
                 <a href="tel:89206200034" className="flex items-center gap-3 gold-text hover:opacity-70 transition-opacity">
                   <Icon name="Phone" size={15} className="text-gold/60" />
-                  <span className="font-cormorant text-xl">8 920 620-00-34</span>
+                  <span className="font-cormorant text-xl">+7 (920) 620-00-34</span>
                 </a>
                 <a href="mailto:and-doroshe@mail.ru" className="flex items-center gap-3 text-white/50 hover:text-white transition-colors">
                   <Icon name="Mail" size={15} className="text-white/30" />
@@ -695,47 +659,25 @@ export default function Index() {
                   <Icon name="Send" size={15} className="text-white/30" />
                   <span className="text-sm">@adprodmarketing</span>
                 </a>
-                <div className="flex items-center gap-3 text-white/40">
-                  <Icon name="Clock" size={15} className="text-white/30" />
-                  <span className="text-sm">Пн–Пт, 10:00–19:00 (МСК)</span>
-                </div>
               </div>
             </div>
-            <div>
-              <p className="text-xs tracking-widest uppercase text-white/30 mb-5">География работы</p>
-              <div className="flex flex-wrap gap-2">
-                {CITIES.map((city, i) => (
-                  <span key={i} className="text-xs px-3 py-1.5 rounded-sm text-white/50"
-                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    {city}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          <div className={`grid md:grid-cols-2 gap-4 mb-10 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '0.25s' }}>
-            <div className="flex items-start gap-4 p-5 rounded-sm"
-              style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)' }}>
-              <div className="shrink-0 w-8 h-8 rounded-sm flex items-center justify-center mt-0.5"
-                style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.2)' }}>
-                <Icon name="MapPin" size={14} className="text-gold" />
-              </div>
-              <div>
-                <p className="text-xs tracking-widest uppercase text-white/30 mb-1">Владимир</p>
-                <p className="text-off-white text-sm leading-relaxed">просп. Ленина, 29Б, офис 37</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 p-5 rounded-sm"
-              style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)' }}>
-              <div className="shrink-0 w-8 h-8 rounded-sm flex items-center justify-center mt-0.5"
-                style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.2)' }}>
-                <Icon name="MapPin" size={14} className="text-gold" />
-              </div>
-              <div>
-                <p className="text-xs tracking-widest uppercase text-white/30 mb-1">Москва · м. Курская</p>
-                <p className="text-off-white text-sm leading-relaxed">Территория завода «Арма»</p>
+            <div className="md:col-span-2">
+              <p className="text-xs tracking-widest uppercase text-white/30 mb-5">География и адреса</p>
+              <div className="grid sm:grid-cols-3 gap-4">
+                {LOCATIONS.map((loc, i) => (
+                  <div key={i} className="flex items-start gap-3 p-5 rounded-sm"
+                    style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.12)' }}>
+                    <Icon name="MapPin" size={14} className="text-gold shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs tracking-widest uppercase text-white/30 mb-1">
+                        {loc.city}{loc.tag && <span className="text-gold/60"> · {loc.tag}</span>}
+                      </p>
+                      <p className="text-off-white text-sm leading-relaxed">{loc.address}</p>
+                      {loc.note && <p className="text-white/40 text-xs leading-relaxed mt-1">{loc.note}</p>}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -751,8 +693,8 @@ export default function Index() {
       <footer style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: '#060606' }} className="py-8 px-6 md:px-16">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <p className="font-cormorant text-lg gold-text">Дорошенко Андрей Анатольевич</p>
-            <p className="text-white/25 text-xs mt-1">Арбитражный управляющий · B2B-архитектор</p>
+            <p className="font-cormorant text-lg gold-text">Дорошенко и партнёры</p>
+            <p className="text-white/25 text-xs mt-1">Антикризисный управляющий · Коммерческий архитектор</p>
           </div>
           <div className="flex gap-4">
             <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
