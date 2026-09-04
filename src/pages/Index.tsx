@@ -228,6 +228,12 @@ export default function Index() {
               <span className="gold-gradient">учить учебники</span>
             </h1>
 
+            <p className={`text-white/75 text-[15px] md:text-lg leading-relaxed mb-4 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+              style={{ transitionDelay: '0.28s' }}>
+              Мы слишком усложнили игру под названием «бизнес».<br />
+              Здесь возвращаем бизнесу игру.
+            </p>
+
             <p className={`text-white/65 text-[15px] md:text-lg leading-relaxed mb-10 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
               style={{ transitionDelay: '0.3s' }}>
               Не лекция. Не скучный тренинг. Не корпоратив с конкурсами.<br />
