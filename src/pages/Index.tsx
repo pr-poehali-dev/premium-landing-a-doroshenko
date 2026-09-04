@@ -358,8 +358,11 @@ export default function Index() {
                   </span>
                 ))}
               </div>
-              <p className="text-white/70 text-lg leading-relaxed">
+              <p className="text-white/70 text-lg leading-relaxed mb-4">
                 Придумываю игры, которые помогают понять продажи не через учебник, а через действие.
+              </p>
+              <p className="text-white/50 text-[15px] leading-relaxed">
+                Я умею строить отделы продаж, настраивать CRM и говорить про стратегии. Просто сейчас мне гораздо интереснее и полезнее делать и вести игры.
               </p>
             </div>
           </div>
@@ -375,7 +378,7 @@ export default function Index() {
             </h2>
             <div className="section-divider mt-6" />
             <p className="text-white/50 text-[15px] leading-relaxed mt-6">
-              Оставьте контакты — обсудим детали и подберём формат
+              Напишите мне. Расскажу, что за игра и как это происходит.
             </p>
           </div>
 
