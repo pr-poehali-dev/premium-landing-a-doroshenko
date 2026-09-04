@@ -124,7 +124,7 @@ const FORMATS = [
   },
 ];
 
-const CITIES_LINE = 'Санкт-Петербург · Москва · Владимир · выезд по России';
+const CITIES_LINE = 'Санкт-Петербург, метро Маяковская, ТЦ «Невский Атриум» — выезд Москва, остальные регионы по договоренности';
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -466,7 +466,7 @@ export default function Index() {
             <div className="flex flex-wrap items-center gap-x-8 gap-y-3 mb-8 text-sm text-white/50">
               <div className="flex items-center gap-2"><Icon name="Users" size={14} className="text-gold/60" /> 5–12 участников</div>
               <div className="flex items-center gap-2"><Icon name="Calendar" size={14} className="text-gold/60" /> 1 рабочий день</div>
-              <div className="flex items-center gap-2"><Icon name="MapPin" size={14} className="text-gold/60" /> СПб · Москва · Владимир · выезд</div>
+              <div className="flex items-center gap-2"><Icon name="MapPin" size={14} className="text-gold/60" /> СПб · выезд Москва · регионы по договорённости</div>
               <div className="flex items-center gap-2 gold-text font-medium"><Icon name="Tag" size={14} /> от 30 000 ₽</div>
             </div>
 
