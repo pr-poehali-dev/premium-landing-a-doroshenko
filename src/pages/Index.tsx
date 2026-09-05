@@ -193,9 +193,9 @@ export default function Index() {
       {/* ШАПКА */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-4"
         style={{ background: 'rgba(8,8,8,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,169,110,0.1)' }}>
-        <div className="flex items-center gap-3 whitespace-nowrap">
-          <img src={LOGO} alt="Бизнес-игры by Doroshenko" className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover" />
-          <span className="font-cormorant text-base md:text-lg tracking-widest uppercase gold-text hidden sm:inline">
+        <div className="flex flex-col items-center gap-1 whitespace-nowrap">
+          <img src={LOGO} alt="Бизнес-игры by Doroshenko" className="h-14 w-14 md:h-16 md:w-16 rounded-full object-cover" />
+          <span className="font-cormorant text-lg md:text-xl tracking-widest uppercase gold-text hidden sm:inline">
             ДОРОШЕНКО
           </span>
         </div>
