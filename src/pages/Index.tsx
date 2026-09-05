@@ -4,6 +4,7 @@ import Icon from '@/components/ui/icon';
 const PHOTO_HERO = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/f8023fbe-5972-4d0a-9de8-975b411fa0fa.jpg';
 const PHOTO_ABOUT_1 = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/9a18b6be-471b-434f-83ca-c4a47dd3ed78.png';
 const PHOTO_ABOUT_2 = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/e3383e45-4b36-41f0-8304-8f1de0901248.png';
+const LOGO = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/147040bb-39b2-46b1-af51-38358912e677.png';
 
 type FormState = { name: string; niche: string; phone: string };
 const EMPTY_FORM: FormState = { name: '', niche: '', phone: '' };
@@ -192,8 +193,11 @@ export default function Index() {
       {/* ШАПКА */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-4"
         style={{ background: 'rgba(8,8,8,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,169,110,0.1)' }}>
-        <div className="font-cormorant text-base md:text-lg tracking-widest uppercase gold-text whitespace-nowrap">
-          ДОРОШЕНКО
+        <div className="flex items-center gap-3 whitespace-nowrap">
+          <img src={LOGO} alt="Бизнес-игры by Doroshenko" className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover" />
+          <span className="font-cormorant text-base md:text-lg tracking-widest uppercase gold-text hidden sm:inline">
+            ДОРОШЕНКО
+          </span>
         </div>
         <nav className="hidden lg:flex gap-6 text-xs text-white/40 tracking-widest uppercase">
           <a href="#games" className="hover:text-white transition-colors">Игры</a>
