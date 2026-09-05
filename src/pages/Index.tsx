@@ -251,8 +251,9 @@ export default function Index() {
               </button>
             </div>
 
-            <p className={`text-white/30 text-xs tracking-wide transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            <p className={`flex items-center gap-2 text-gold/80 text-xs tracking-wide transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.6s' }}>
+              <Icon name="MapPin" size={14} className="shrink-0" />
               Санкт-Петербург, метро Маяковская, ТЦ «Невский Атриум» — выезд Москва, остальные регионы по договорённости
             </p>
           </div>
