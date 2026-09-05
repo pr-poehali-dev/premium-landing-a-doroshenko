@@ -282,6 +282,12 @@ export default function Index() {
             <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-xl mx-auto">
               Через игру становится понятнее, кому, что и зачем мы продаём — и как вообще устроен процесс продажи.
             </p>
+
+            <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-8 px-6 py-3 text-sm tracking-wide rounded-sm border border-gold/30 gold-text hover:bg-gold/10 transition-colors">
+              <Icon name="Send" size={16} />
+              Подписаться на телеграм-канал «Дорошенко — бизнес-игры»
+            </a>
           </div>
 
           <div className={`grid sm:grid-cols-2 gap-4 mt-14 transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
