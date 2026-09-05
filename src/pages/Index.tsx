@@ -258,13 +258,13 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2">
+        <div className="hidden md:block absolute right-0 top-16 bottom-0 w-1/2">
           <div className="absolute inset-0 z-10" style={{
             background: 'linear-gradient(to right, #0A0A0A 0%, transparent 35%)'
           }} />
           <img src={PHOTO_HERO} alt="Андрей Дорошенко"
-            className="w-full h-full object-cover object-top"
-            style={{ filter: 'brightness(0.85) contrast(1.05)' }} />
+            className="w-full h-full object-cover"
+            style={{ filter: 'brightness(0.85) contrast(1.05)', objectPosition: 'top' }} />
           <div className="absolute inset-0 z-10" style={{
             background: 'linear-gradient(to top, #0A0A0A 0%, transparent 40%)'
           }} />
