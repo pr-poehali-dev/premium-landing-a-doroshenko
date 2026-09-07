@@ -20,7 +20,7 @@ const PRODUCTS = [
     title: 'Игровой день для отдела продаж',
     price: '30 000 ₽',
     meta: '1 день · 4–8 человек · Санкт-Петербург / выезд',
-    text: '«Город продаж» и «6 шляп» — команда играет, спорит, продаёт и в итоге понимает про себя гораздо больше, чем после любого тренинга.',
+    text: '«Город продаж» и «6 шляп» — 4–5 часов стресс-теста в смоделированном рынке. На следующий день руководитель получает письменный аудит отдела: где менеджеры сливают клиентов, кто реально тянет результат, а кто имитирует работу.',
     cta: 'ПОИГРАТЬ С ОТДЕЛОМ',
     preset: 'Игровой день для отдела продаж',
   },
@@ -36,6 +36,29 @@ const PRODUCTS = [
 ];
 
 const ABOUT_TAGS = ['Продажи', 'Маркетинг', 'Продукты', 'B2B', 'Производство', 'E-commerce'];
+
+const FAQ = [
+  {
+    q: 'Они не учат скрипты и плохо звонят — зачем им играть в игры?',
+    a: 'Игра — это не развлечение, а полигон. Мы сразу погружаем сотрудников в реальные переговоры и конкуренцию, чтобы увидеть их фактические действия, а не заученные наизусть ответы.',
+  },
+  {
+    q: 'Почему не пригласить классического бизнес-тренера?',
+    a: 'Тренер показывает, как виртуозно продает он сам. В игре ваши менеджеры действуют самостоятельно, набивают шишки без риска для кассы компании и на практике видят цену своих ошибок.',
+  },
+  {
+    q: 'У нас уже было несколько тренингов, а результата нет. Чем это отличается?',
+    a: 'Мы не читаем лекции и не пичкаем людей чужой теорией. Мы проводим стресс-тест текущей команды и вскрываем истинные причины пробуксовки: страх назвать полную цену, неумение слышать клиента или внутренний саботаж.',
+  },
+  {
+    q: 'Вы порекомендуете всех уволить? На рынке сейчас дефицит кадров.',
+    a: 'Задача аудита — не разгонять команду, а выявить сильные и слабые стороны действующих сотрудников, чтобы точечно докрутить их навыки и выжать максимум из тех, кто уже работает в компании.',
+  },
+  {
+    q: 'Кто должен участвовать со стороны компании?',
+    a: 'Рабочая группа менеджеров по продажам (4–8 человек). Руководитель или собственник может играть наравне с командой либо наблюдать за процессом со стороны.',
+  },
+];
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -163,6 +186,24 @@ function ContactForm() {
   );
 }
 
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-sm" style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
+      <button onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center justify-between gap-4 text-left px-6 py-5">
+        <span className="font-cormorant text-lg md:text-xl text-off-white">{q}</span>
+        <Icon name={open ? 'Minus' : 'Plus'} size={18} className="shrink-0 text-gold" />
+      </button>
+      {open && (
+        <div className="px-6 pb-5 text-white/60 text-sm md:text-[15px] leading-relaxed">
+          {a}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPreset, setModalPreset] = useState<string | undefined>(undefined);
@@ -176,6 +217,7 @@ export default function Index() {
   const hero = useInView(0.05);
   const intro = useInView(0.1);
   const products = useInView(0.1);
+  const faq = useInView(0.1);
   const about = useInView(0.1);
   const contact = useInView(0.1);
 
@@ -232,16 +274,9 @@ export default function Index() {
               <span className="gold-gradient">учить учебники</span>
             </h1>
 
-            <p className={`text-white/75 text-[15px] md:text-lg leading-relaxed mb-4 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            <p className={`text-white/75 text-[15px] md:text-lg leading-relaxed mb-10 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
               style={{ transitionDelay: '0.28s' }}>
-              Мы слишком усложнили игру под названием «бизнес».<br />
-              Здесь возвращаем бизнесу игру.
-            </p>
-
-            <p className={`text-white/65 text-[15px] md:text-lg leading-relaxed mb-10 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '0.3s' }}>
-              Не лекция. Не скучный тренинг. Не корпоратив с конкурсами.<br />
-              Играем в продажи.
+              Полигон, где отдел продаж учится действовать, договариваться и отвечать за результат — без риска слить реальные деньги.
             </p>
 
             <div className={`flex flex-col sm:flex-row gap-4 mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
@@ -278,7 +313,7 @@ export default function Index() {
         <div className="max-w-3xl mx-auto text-center">
           <div className={`transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-6">
-              Люди ищут клиентов, продают,<br />конкурируют, ошибаются и смеются
+              Люди ищут клиентов, продают,<br />конкурируют, ошибаются и делают выводы на месте
             </h2>
             <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-xl mx-auto">
               Через игру становится понятнее, кому, что и зачем мы продаём — и как вообще устроен процесс продажи.
@@ -330,6 +365,23 @@ export default function Index() {
                   {p.cta}
                 </button>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" ref={faq.ref} className="py-24 px-6 md:px-16 lg:px-24"
+        style={{ borderTop: '1px solid rgba(201,169,110,0.1)' }}>
+        <div className="max-w-3xl mx-auto">
+          <div className={`text-center mb-14 transition-all duration-700 ${faq.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Частые вопросы</p>
+            <div className="section-divider" />
+          </div>
+          <div className={`flex flex-col gap-4 transition-all duration-700 ${faq.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ transitionDelay: '0.1s' }}>
+            {FAQ.map((item, i) => (
+              <FaqItem key={i} q={item.q} a={item.a} />
             ))}
           </div>
         </div>
