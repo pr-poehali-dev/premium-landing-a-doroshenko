@@ -6,8 +6,32 @@ const PHOTO_ABOUT_1 = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-
 const PHOTO_ABOUT_2 = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/e3383e45-4b36-41f0-8304-8f1de0901248.png';
 const LOGO = 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/147040bb-39b2-46b1-af51-38358912e677.png';
 
-type FormState = { name: string; niche: string; phone: string };
-const EMPTY_FORM: FormState = { name: '', niche: '', phone: '' };
+type FormState = {
+  name: string;
+  company: string;
+  phone: string;
+  channel: string;
+  email: string;
+  time: string;
+  city: string;
+  interest: string;
+};
+const EMPTY_FORM: FormState = {
+  name: '', company: '', phone: '', channel: '', email: '', time: '', city: '', interest: '',
+};
+
+const CHANNELS = [
+  { value: 'call', label: 'Звонок', icon: 'Phone' },
+  { value: 'telegram', label: 'Telegram', icon: 'Send' },
+  { value: 'max', label: 'MAX', icon: 'MessageCircle' },
+  { value: 'email', label: 'Email', icon: 'Mail' },
+];
+
+const INTERESTS = [
+  { value: 'training', label: 'Тренинг' },
+  { value: 'strategy', label: 'Стратегическая сессия' },
+  { value: 'audit', label: 'Аудит' },
+];
 
 const GAMES = [
   { emoji: '🎲', title: '«Город продаж»', text: 'Команда реально играет в продажи: ищет клиентов, торгуется, закрывает сделки — или сливает их.' },
@@ -76,12 +100,25 @@ function useInView(threshold = 0.12) {
   return { ref, inView };
 }
 
+function isFormValid(form: FormState) {
+  return form.name.trim() !== '' && form.company.trim() !== '' && form.phone.trim() !== '';
+}
+
 async function sendLead(form: FormState, type: string) {
   try {
+    const channelLabel = CHANNELS.find(c => c.value === form.channel)?.label || '—';
+    const interestLabel = INTERESTS.find(i => i.value === form.interest)?.label || '—';
     const res = await fetch('https://functions.poehali.dev/fc323d06-bbf9-4e34-b478-9a1d63552d0d', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: form.name, phone: form.phone, niche: form.niche, type }),
+      body: JSON.stringify({
+        name: form.name,
+        phone: form.phone,
+        company: form.company,
+        city: form.city,
+        message: `Канал связи: ${channelLabel}. Email: ${form.email || '—'}. Время связи: ${form.time || '—'}. Интересует: ${interestLabel}.`,
+        type,
+      }),
     });
     return res.ok;
   } catch {
@@ -89,15 +126,61 @@ async function sendLead(form: FormState, type: string) {
   }
 }
 
-function LeadFields({ form, setForm }: { form: FormState; setForm: React.Dispatch<React.SetStateAction<FormState>> }) {
+function LeadFields({ form, setForm, wide }: { form: FormState; setForm: React.Dispatch<React.SetStateAction<FormState>>; wide?: boolean }) {
+  const span = wide ? 'md:col-span-2' : '';
   return (
     <>
-      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Имя *" required
+      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="ФИО *" required
         value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
-      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Компания (необязательно)"
-        value={form.niche} onChange={e => setForm(p => ({ ...p, niche: e.target.value }))} />
-      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Телефон / Telegram *" required
+      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Компания *" required
+        value={form.company} onChange={e => setForm(p => ({ ...p, company: e.target.value }))} />
+      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Телефон *" required
         value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} />
+      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Город"
+        value={form.city} onChange={e => setForm(p => ({ ...p, city: e.target.value }))} />
+
+      <div className={span}>
+        <p className="text-white/40 text-xs tracking-wide uppercase mb-2">Приоритетный канал связи</p>
+        <div className="flex flex-wrap gap-2">
+          {CHANNELS.map(c => (
+            <button key={c.value} type="button" onClick={() => setForm(p => ({ ...p, channel: c.value }))}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-sm text-xs transition-colors"
+              style={{
+                background: form.channel === c.value ? 'rgba(201,169,110,0.18)' : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${form.channel === c.value ? 'rgba(201,169,110,0.7)' : 'rgba(201,169,110,0.25)'}`,
+                color: form.channel === c.value ? '#e8d5a3' : 'rgba(245,240,232,0.7)',
+              }}>
+              <Icon name={c.icon} size={13} />
+              {c.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {form.channel === 'email' && (
+        <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Email"
+          type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} />
+      )}
+
+      <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Удобное время для связи"
+        value={form.time} onChange={e => setForm(p => ({ ...p, time: e.target.value }))} />
+
+      <div className={span}>
+        <p className="text-white/40 text-xs tracking-wide uppercase mb-2">Что интересует</p>
+        <div className="flex flex-wrap gap-2">
+          {INTERESTS.map(i => (
+            <button key={i.value} type="button" onClick={() => setForm(p => ({ ...p, interest: i.value }))}
+              className="px-3 py-2 rounded-sm text-xs transition-colors"
+              style={{
+                background: form.interest === i.value ? 'rgba(201,169,110,0.18)' : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${form.interest === i.value ? 'rgba(201,169,110,0.7)' : 'rgba(201,169,110,0.25)'}`,
+                color: form.interest === i.value ? '#e8d5a3' : 'rgba(245,240,232,0.7)',
+              }}>
+              {i.label}
+            </button>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
@@ -120,7 +203,7 @@ function Modal({ open, onClose, presetTitle }: { open: boolean; onClose: () => v
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(8px)' }}
       onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="relative w-full max-w-md"
+      <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto"
         style={{ background: '#0e0e0e', border: '1px solid rgba(201,169,110,0.35)', borderRadius: 2 }}>
         <button onClick={onClose} className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors">
           <Icon name="X" size={20} />
@@ -140,7 +223,7 @@ function Modal({ open, onClose, presetTitle }: { open: boolean; onClose: () => v
               Оставьте контакты — обсудим детали и подберём формат
             </p>
             <LeadFields form={form} setForm={setForm} />
-            <button type="submit" disabled={loading} className="btn-gold rounded py-3 text-sm mt-2 disabled:opacity-60">
+            <button type="submit" disabled={loading || !isFormValid(form)} className="btn-gold rounded py-3 text-sm mt-2 disabled:opacity-40">
               {loading ? 'Отправляем...' : 'Отправить'}
             </button>
           </form>
@@ -174,11 +257,11 @@ function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid md:grid-cols-3 gap-4">
-      <LeadFields form={form} setForm={setForm} />
-      <div className="md:col-span-3">
-        <button type="submit" disabled={loading}
-          className="btn-gold rounded-sm py-4 px-12 text-sm tracking-wider uppercase disabled:opacity-60">
+    <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
+      <LeadFields form={form} setForm={setForm} wide />
+      <div className="md:col-span-2">
+        <button type="submit" disabled={loading || !isFormValid(form)}
+          className="btn-gold rounded-sm py-4 px-12 text-sm tracking-wider uppercase disabled:opacity-40">
           {loading ? 'Отправляем...' : 'Погнали'}
         </button>
       </div>
