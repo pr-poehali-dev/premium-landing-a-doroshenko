@@ -33,56 +33,72 @@ const INTERESTS = [
   { value: 'audit', label: 'Аудит' },
 ];
 
-const GAMES = [
-  { emoji: '🎲', title: '«Город продаж»', text: 'Команда реально играет в продажи: ищет клиентов, торгуется, закрывает сделки — или сливает их.' },
-  { emoji: '🎩', title: '«6 шляп»', text: 'Игра про мышление и взаимодействие в команде. Кто тут капитан, а кто спит на весле.' },
+const SYMPTOMS = [
+  {
+    icon: 'TrendingDown',
+    title: 'Яндекс Директ дороже маржи',
+    text: 'Лид из Яндекс Директа стоит дороже маржи с первой сделки — и даже за эти безумные деньги до вас долетает полудохлый трафик, который думает месяцами.',
+  },
+  {
+    icon: 'Store',
+    title: 'Выставки — ярмарка тщеславия',
+    text: 'Стенды стоят миллионы, а людей с реальными бюджетами в проходах нет, все ходят собирать бесплатные ручки.',
+  },
+  {
+    icon: 'Package',
+    title: 'Маркетплейсы сожрали маржу',
+    text: 'Комиссии, штрафы, принудительные скидки и блокировки выжгли экономику, и вы снова ищете прямой, управляемый канал сбыта.',
+  },
+];
+
+const STENDAP_ITEMS = [
+  { icon: 'Radar', title: 'Разведка', text: 'Боец знает, кому звонит, чем дышит этот завод, где сидит закупщик и на какой мозоль нажать с первой секунды.' },
+  { icon: 'Target', title: 'Оффер-пуля', text: 'У менеджера в руках твёрдое, выверенное предложение, которое реально нужно рынку прямо сейчас, а не тупая простыня «мы лидеры отрасли».' },
+  { icon: 'ShieldCheck', title: 'Психологическая броня', text: 'Уверенность бойца, что он звонит не выпрашивать копейки, а принёс решение, от которого глупо отказываться.' },
+];
+
+const WORKING_MODEL = [
+  { emoji: '📈', title: 'Маркетинг', subtitle: 'Сборка оффера', text: 'Вскрываем ваш реальный продукт, убираем водянистую шелуху, вытаскиваем железобетонные аргументы под холодный контакт: почему клиент должен сменить старого поставщика на вас.' },
+  { emoji: '🎲', title: 'Игропрактика', subtitle: 'Боевой тренажёр «Город продаж»', text: 'Команда попадает на смоделированный рынок с дефицитом кэша, демпингом и жёсткими закупщиками. Здесь нет риска слить реального клиента — все ошибки вылезают за столом.' },
+  { emoji: '🧠', title: 'Психология', subtitle: 'Снятие барьера', text: 'За 4 часа бойцы проживают десятки отказов в игровом азарте. Страх звонка исчезает, появляется спортивная злость и мышечная память на возражения.' },
 ];
 
 const PRODUCTS = [
   {
-    emoji: '🎲',
-    title: 'Игровой день для отдела продаж',
+    emoji: '🎯',
+    title: '1-дневный полигонный стресс-тест',
     price: '30 000 ₽',
-    meta: '1 день · 4–8 человек · Санкт-Петербург / выезд',
-    text: '«Город продаж» и «6 шляп» — 4–5 часов стресс-теста в смоделированном рынке. На следующий день руководитель получает письменный аудит отдела: где менеджеры сливают клиентов, кто реально тянет результат, а кто имитирует работу.',
-    cta: 'ПОИГРАТЬ С ОТДЕЛОМ',
-    preset: 'Игровой день для отдела продаж',
+    meta: '1 день · 4–8 человек · ваш офис / переговорная в СПб',
+    bullets: [
+      'Быстрая ревизия текущего коммерческого предложения.',
+      '4 часа полигонных испытаний команды на переговорном тренажёре.',
+      'Результат для РОПа и собственника: рентген отдела — кто реально готов идти в холодные продажи и держать удар, кто падает в скидки, а кого пора списать, чтобы не жечь зарплатный фонд.',
+    ],
+    cta: 'ЗАПИСАТЬСЯ НА СТРЕСС-ТЕСТ',
+    preset: '1-дневный полигонный стресс-тест',
   },
   {
-    emoji: '🧠',
-    title: 'Стратегическая сессия',
-    price: '50 000 ₽',
-    meta: '1 день',
-    text: 'Берём реальный вопрос бизнеса → обсуждаем → спорим → принимаем решения. Без длинного консалтинга.',
-    cta: 'ПРОВЕСТИ СЕССИЮ',
-    preset: 'Стратегическая сессия',
+    emoji: '⚔️',
+    title: '3-дневная программа сборки и разведки боем',
+    price: '80 000 ₽',
+    meta: '3 дня интенсива · полное погружение в поля',
+    bullets: [
+      'День 1. Анализ и сборка оффера: разбираем сильные и слабые стороны вашего предложения, вычищаем КП, упаковываем оффер-пулю под ЛПР.',
+      'День 2. Отработка на полигоне: моделируем сценарии переговоров, ставим психологическую защиту от агрессии и отказа, набиваем руку на симуляторе.',
+      'День 3. Разведка боем: садимся вместе с вашим отделом продаж и делаем первые реальные холодные заходы по новой технологии прямо на ваших глазах.',
+    ],
+    cta: 'ЗАПИСАТЬСЯ НА ПРОГРАММУ',
+    preset: '3-дневная программа сборки и разведки боем',
   },
 ];
 
-const ABOUT_TAGS = ['Продажи', 'Маркетинг', 'Продукты', 'B2B', 'Производство', 'E-commerce'];
-
-const FAQ = [
-  {
-    q: 'Они не учат скрипты и плохо звонят — зачем им играть в игры?',
-    a: 'Игра — это не развлечение, а полигон. Мы сразу погружаем сотрудников в реальные переговоры и конкуренцию, чтобы увидеть их фактические действия, а не заученные наизусть ответы.',
-  },
-  {
-    q: 'Почему не пригласить классического бизнес-тренера?',
-    a: 'Тренер показывает, как виртуозно продает он сам. В игре ваши менеджеры действуют самостоятельно, набивают шишки без риска для кассы компании и на практике видят цену своих ошибок.',
-  },
-  {
-    q: 'У нас уже было несколько тренингов, а результата нет. Чем это отличается?',
-    a: 'Мы не читаем лекции и не пичкаем людей чужой теорией. Мы проводим стресс-тест текущей команды и вскрываем истинные причины пробуксовки: страх назвать полную цену, неумение слышать клиента или внутренний саботаж.',
-  },
-  {
-    q: 'Вы порекомендуете всех уволить? На рынке сейчас дефицит кадров.',
-    a: 'Задача аудита — не разгонять команду, а выявить сильные и слабые стороны действующих сотрудников, чтобы точечно докрутить их навыки и выжать максимум из тех, кто уже работает в компании.',
-  },
-  {
-    q: 'Кто должен участвовать со стороны компании?',
-    a: 'Рабочая группа менеджеров по продажам (4–8 человек). Руководитель или собственник может играть наравне с командой либо наблюдать за процессом со стороны.',
-  },
+const RESULTS = [
+  { icon: 'Users', title: 'Командообразование вокруг дела', text: 'Менеджеры перестанут ныть в курилках, что «рынок встал», и поймут механику работы без тёплой базы.' },
+  { icon: 'ShieldCheck', title: 'Союзник для РОПа', text: 'Руководитель получает в руки готовый инструмент контроля, объективную оценку людей и чёткую связку захода, с которой легко требовать план.' },
+  { icon: 'Crosshair', title: 'Боевой оффер', text: 'Продавцы пойдут в рынок не с опущенными глазами, а с чётким пониманием, в чём их сила.' },
 ];
+
+const ABOUT_TAGS = ['B2B', 'Маркетинг', 'Продуктовый аудит', 'Производство', 'Бокс'];
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -269,24 +285,6 @@ function ContactForm() {
   );
 }
 
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="rounded-sm" style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
-      <button onClick={() => setOpen(o => !o)}
-        className="w-full flex items-center justify-between gap-4 text-left px-6 py-5">
-        <span className="font-cormorant text-lg md:text-xl text-off-white">{q}</span>
-        <Icon name={open ? 'Minus' : 'Plus'} size={18} className="shrink-0 text-gold" />
-      </button>
-      {open && (
-        <div className="px-6 pb-5 text-white/60 text-sm md:text-[15px] leading-relaxed">
-          {a}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPreset, setModalPreset] = useState<string | undefined>(undefined);
@@ -325,7 +323,8 @@ export default function Index() {
           </span>
         </div>
         <nav className="hidden lg:flex gap-6 text-xs text-white/40 tracking-widest uppercase">
-          <a href="#games" className="hover:text-white transition-colors">Игры</a>
+          <a href="#games" className="hover:text-white transition-colors">Полигон</a>
+          <a href="#products" className="hover:text-white transition-colors">Программы</a>
           <a href="#about" className="hover:text-white transition-colors">Обо мне</a>
           <a href="#contact" className="hover:text-white transition-colors">Контакты</a>
         </nav>
@@ -348,31 +347,31 @@ export default function Index() {
           <div className="relative z-10 max-w-xl">
             <p className={`text-xs tracking-[0.3em] uppercase text-gold/70 mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.1s' }}>
-              🎲 Игры для отделов продаж
+              🎯 Полигон для холодных продаж
             </p>
 
             <h1 className={`font-cormorant font-light leading-[1.05] mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ fontSize: 'clamp(2.1rem, 4.6vw, 4rem)', transitionDelay: '0.2s' }}>
-              Учебники для тех,<br />кто не хочет<br />
-              <span className="gold-gradient">учить учебники</span>
+              Бизнес-полигон<br />
+              <span className="gold-gradient">для отдела продаж</span>
             </h1>
 
             <p className={`text-white/75 text-[15px] md:text-lg leading-relaxed mb-10 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
               style={{ transitionDelay: '0.28s' }}>
-              Полигон, где отдел продаж учится действовать, договариваться и отвечать за результат — без риска слить реальные деньги.
+              Холодный сбыт без клоунады: готовим разведку, вытачиваем оффер-пулю и на боевом тренажёре учим команду продавать на сжатом рынке.
             </p>
 
             <div className={`flex flex-col sm:flex-row gap-4 mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.5s' }}>
-              <button onClick={() => openModal('Игровой день для отдела продаж')} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
-                Поиграть с отделом
+              <button onClick={() => openModal('1-дневный полигонный стресс-тест')} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
+                Развернуть полигон для вашего отдела
               </button>
             </div>
 
             <p className={`flex items-center gap-2 text-gold/80 text-xs tracking-wide transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.6s' }}>
               <Icon name="MapPin" size={14} className="shrink-0" />
-              Санкт-Петербург, метро Маяковская, ТЦ «Невский Атриум» — выезд Москва, остальные регионы по договорённости
+              Санкт-Петербург / Выезд на предприятие / Москва
             </p>
           </div>
         </div>
@@ -390,16 +389,16 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ИНТРО / КАК ЭТО РАБОТАЕТ */}
+      {/* СИМПТОМЫ */}
       <section id="games" ref={intro.ref} className="py-24 px-6 md:px-16 lg:px-24"
         style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
-        <div className="max-w-3xl mx-auto text-center">
-          <div className={`transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <div className="max-w-4xl mx-auto">
+          <div className={`text-center mb-14 transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-6">
-              Люди ищут клиентов, продают,<br />конкурируют, ошибаются и делают выводы на месте
+              Три симптома, что старые каналы сдохли
             </h2>
             <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-xl mx-auto">
-              Через игру становится понятнее, кому, что и зачем мы продаём — и как вообще устроен процесс продажи.
+              Выход один — возвращаться к прямым, холодным B2B-продажам. Но не вслепую, а по военной технологии.
             </p>
 
             <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
@@ -409,14 +408,65 @@ export default function Index() {
             </a>
           </div>
 
-          <div className={`grid sm:grid-cols-2 gap-4 mt-14 transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          <div className={`grid sm:grid-cols-3 gap-4 transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '0.15s' }}>
-            {GAMES.map((g, i) => (
+            {SYMPTOMS.map((s, i) => (
               <div key={i} className="p-7 rounded-sm text-left"
                 style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
-                <div className="text-3xl mb-3">{g.emoji}</div>
-                <p className="font-cormorant text-2xl gold-text mb-2">{g.title}</p>
-                <p className="text-white/60 text-sm leading-relaxed">{g.text}</p>
+                <Icon name={s.icon} size={26} className="text-gold mb-4" />
+                <p className="font-cormorant text-xl gold-text mb-2">{s.title}</p>
+                <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* СТЕНДАП */}
+      <section className="py-24 px-6 md:px-16 lg:px-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-6">
+              Холодные продажи — это не наглость.<br /><span className="gold-text">Это стендап</span>
+            </h2>
+            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-2xl mx-auto">
+              Любой хороший стендап со сцены выглядит как лёгкая импровизация. Но за этим стоят месяцы шлифовки каждой фразы.
+              В холодных продажах то же самое: «стендап» в трубке работает только тогда, когда за ним стоит:
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-4">
+            {STENDAP_ITEMS.map((s, i) => (
+              <div key={i} className="p-7 rounded-sm text-left"
+                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
+                <Icon name={s.icon} size={26} className="text-gold mb-4" />
+                <p className="font-cormorant text-xl gold-text mb-2">{s.title}</p>
+                <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* КАК РАБОТАЕТ ПОЛИГОН */}
+      <section className="py-24 px-6 md:px-16 lg:px-24"
+        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light">
+              Как работает бизнес-полигон: 3 в 1
+            </h2>
+            <div className="section-divider mt-6" />
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-4">
+            {WORKING_MODEL.map((w, i) => (
+              <div key={i} className="p-7 rounded-sm text-left flex flex-col"
+                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
+                <div className="text-3xl mb-3">{w.emoji}</div>
+                <p className="font-cormorant text-xl gold-text mb-1">{w.title}</p>
+                <p className="text-xs tracking-widest uppercase text-white/30 mb-3">{w.subtitle}</p>
+                <p className="text-white/60 text-sm leading-relaxed">{w.text}</p>
               </div>
             ))}
           </div>
@@ -428,7 +478,7 @@ export default function Index() {
         <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-14 transition-all duration-700 ${products.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Форматы
+              Программы под вашу задачу
             </h2>
             <div className="section-divider mt-6" />
           </div>
@@ -442,7 +492,14 @@ export default function Index() {
                 <p className="text-off-white font-medium text-lg mb-2 leading-snug">{p.title}</p>
                 <p className="font-cormorant text-3xl gold-text font-semibold mb-3">{p.price}</p>
                 <p className="text-xs tracking-widest uppercase text-white/30 mb-5">{p.meta}</p>
-                <p className="text-white/65 text-sm leading-relaxed mb-8 flex-1">{p.text}</p>
+                <ul className="text-white/65 text-sm leading-relaxed mb-8 flex-1 flex flex-col gap-3">
+                  {p.bullets.map((b, j) => (
+                    <li key={j} className="flex gap-2">
+                      <Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
                 <button onClick={() => openModal(p.preset)}
                   className="btn-gold px-6 py-4 text-sm tracking-wider uppercase rounded-sm">
                   {p.cta}
@@ -453,18 +510,27 @@ export default function Index() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* РЕЗУЛЬТАТ */}
       <section id="faq" ref={faq.ref} className="py-24 px-6 md:px-16 lg:px-24"
         style={{ borderTop: '1px solid rgba(201,169,110,0.1)' }}>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className={`text-center mb-14 transition-all duration-700 ${faq.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Частые вопросы</p>
-            <div className="section-divider" />
+            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Что вы получите на выходе (без сказок)</p>
+            <h2 className="font-cormorant text-3xl md:text-4xl text-off-white font-light max-w-2xl mx-auto mb-4">
+              Я не инфобизнесмен и не буду обещать вам «гарантированный рост продаж на 50% за неделю» — в нынешней экономике такие сказки рассказывают только жулики.
+            </h2>
+            <p className="text-white/50 text-sm">Что произойдёт на самом деле:</p>
+            <div className="section-divider mt-6" />
           </div>
-          <div className={`flex flex-col gap-4 transition-all duration-700 ${faq.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          <div className={`grid sm:grid-cols-3 gap-4 transition-all duration-700 ${faq.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '0.1s' }}>
-            {FAQ.map((item, i) => (
-              <FaqItem key={i} q={item.q} a={item.a} />
+            {RESULTS.map((r, i) => (
+              <div key={i} className="p-7 rounded-sm"
+                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
+                <Icon name={r.icon} size={26} className="text-gold mb-4" />
+                <p className="font-cormorant text-xl gold-text mb-2">{r.title}</p>
+                <p className="text-white/60 text-sm leading-relaxed">{r.text}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -498,7 +564,7 @@ export default function Index() {
 
             <div className={`transition-all duration-700 ${about.inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
               style={{ transitionDelay: '0.2s' }}>
-              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Обо мне</p>
+              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Кто ведёт</p>
               <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light mb-6">
                 Андрей Дорошенко
               </h2>
@@ -511,10 +577,16 @@ export default function Index() {
                 ))}
               </div>
               <p className="text-white/70 text-lg leading-relaxed mb-4">
-                Придумываю игры, которые помогают понять продажи не через учебник, а через действие.
+                15 лет практики на стыке реального B2B-маркетинга, продуктового аудита и коммерции.
+              </p>
+              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
+                Выводил на федеральный рынок бренд «Чебупели» — продукт, который встал на полки по всей стране и с нуля создал новую категорию.
+              </p>
+              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
+                Работал с Федерацией бокса России — знаю изнутри, как воспитывать выдержку под прессингом и характер побеждать на характере.
               </p>
               <p className="text-white/50 text-[15px] leading-relaxed">
-                Я умею строить отделы продаж, настраивать CRM и говорить про стратегии. Просто сейчас мне гораздо интереснее и полезнее делать и вести игры.
+                Автор прикладных переговорных тренажёров для производственных и оптовых компаний.
               </p>
             </div>
           </div>
@@ -526,11 +598,11 @@ export default function Index() {
         <div className="max-w-3xl mx-auto">
           <div className={`text-center mb-14 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Погнали?
+              Свяжитесь напрямую
             </h2>
             <div className="section-divider mt-6" />
             <p className="text-white/50 text-[15px] leading-relaxed mt-6">
-              Напишите мне. Расскажу, что за игра и как это происходит.
+              Разберём ваш текущий оффер и назначим дату полигона.
             </p>
           </div>
 
@@ -563,7 +635,7 @@ export default function Index() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <p className="font-cormorant text-lg gold-text">Андрей Дорошенко</p>
-            <p className="text-white/25 text-xs mt-1">Игры для отделов продаж</p>
+            <p className="text-white/25 text-xs mt-1">Бизнес-полигон для отдела продаж</p>
           </div>
           <div className="flex gap-4">
             <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
