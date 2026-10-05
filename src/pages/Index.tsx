@@ -87,6 +87,11 @@ const AFTER_PILOT = [
 
 const ABOUT_TAGS = ['B2B', 'Продукт', 'Коммерция', 'Переговоры'];
 
+const DIPLOMAS = [
+  { src: 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/87bc895e-e2f9-49b0-8f94-802cd51e4289.jpg', caption: 'Диплом, 2025' },
+  { src: 'https://cdn.poehali.dev/projects/bb03cd52-a7e1-49a3-8dc8-9ec2c7948b7a/bucket/790ccbdf-465d-4ecb-93cc-d817d18cdcb5.jpg', caption: 'Сертификат, 2013' },
+];
+
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -299,6 +304,7 @@ function SectionTitle({ eyebrow, children }: { eyebrow?: string; children: React
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [photoIdx, setPhotoIdx] = useState(0);
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const hero = useInView(0.05);
 
   const openModal = () => setModalOpen(true);
@@ -313,6 +319,16 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-obsidian text-off-white font-golos overflow-x-hidden">
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} />
+
+      {lightbox && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 cursor-zoom-out"
+          style={{ background: 'rgba(0,0,0,0.92)' }} onClick={() => setLightbox(null)}>
+          <button className="absolute top-4 right-4 text-white/60 hover:text-white" onClick={() => setLightbox(null)}>
+            <Icon name="X" size={26} />
+          </button>
+          <img src={lightbox} alt="Документ об образовании" className="max-w-full max-h-[90vh] object-contain" />
+        </div>
+      )}
 
       {/* ШАПКА */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-4"
@@ -680,11 +696,21 @@ export default function Index() {
                   <Icon name="GraduationCap" size={15} />
                   Образование
                 </p>
-                <ul className="flex flex-col gap-2 text-white/65 text-sm leading-relaxed">
+                <ul className="flex flex-col gap-2 text-white/65 text-sm leading-relaxed mb-5">
                   <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Экономическое высшее образование</li>
-                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Диплом антикризисного управляющего</li>
-                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Диплом фасилитатора школы НЛП Плигина и Герасимова</li>
+                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Диплом о профессиональной переподготовке: арбитражный и антикризисный управляющий (2025)</li>
+                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Сертификат по фасилитации, школа НЛП Плигина и Герасимова, программа NLP-MBA (2013)</li>
                 </ul>
+                <div className="grid grid-cols-2 gap-3">
+                  {DIPLOMAS.map((d, i) => (
+                    <button key={i} type="button" onClick={() => setLightbox(d.src)}
+                      className="group text-left rounded-sm overflow-hidden"
+                      style={{ border: '1px solid rgba(201,169,110,0.25)' }}>
+                      <img src={d.src} alt={d.caption} className="w-full h-28 object-cover object-top group-hover:opacity-80 transition-opacity" />
+                      <span className="block px-2 py-1.5 text-[11px] text-white/50">{d.caption}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>
