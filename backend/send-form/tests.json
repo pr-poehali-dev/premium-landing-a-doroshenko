@@ -13,8 +13,7 @@
       "body": {
         "name": "Тест Тестович",
         "phone": "+7 999 000 00 00",
-        "niche": "производство",
-        "revenue": "30-300 млн",
+        "company": "ООО Тест",
         "type": "bottom"
       },
       "expectedStatus": 200,
