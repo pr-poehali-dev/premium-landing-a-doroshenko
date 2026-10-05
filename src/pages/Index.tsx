@@ -27,82 +27,65 @@ const CHANNELS = [
   { value: 'email', label: 'Email', icon: 'Mail' },
 ];
 
-const INTERESTS = [
-  { value: 'rentgen', label: 'Рентген' },
-  { value: 'reload', label: 'Перезагрузка' },
-  { value: 'other', label: 'Другое' },
+const TEAM_SIZES = [
+  { value: 'lt5', label: 'Менее 5' },
+  { value: '5-7', label: '5–7' },
+  { value: '8-15', label: '8–15' },
+  { value: '16+', label: '16 и больше' },
 ];
 
-const REASONS = [
-  {
-    icon: 'MicOff',
-    title: 'Скрипт слышно за три секунды',
-    text: 'Умный закупщик сразу чувствует шаблон и закрывает дверь.',
-  },
-  {
-    icon: 'Database',
-    title: 'CRM не продаёт',
-    text: 'Она фиксирует движение сделки, но не объясняет, почему клиент ушёл.',
-  },
-  {
-    icon: 'AlertTriangle',
-    title: 'Страх отказа парализует',
-    text: 'Менеджеры боятся прямого вопроса, стесняются назвать реальную цену и избегают спора.',
-  },
+const SITUATIONS = [
+  'клиент говорит «дорого»',
+  'появляется конкурент',
+  'закупщик давит на цену',
+  'клиент требует скидку',
+  'привычный скрипт перестаёт работать',
+  'нужно самому вести разговор, а не читать заготовку',
 ];
 
-const POLYGON_POINTS = [
-  { icon: 'ShieldOff', text: 'кто начинает защищаться и оправдываться' },
-  { icon: 'TrendingDown', text: 'кто сразу сдаёт маржу ради закрытия сделки' },
-  { icon: 'Swords', text: 'а кто действительно держит позицию и ведёт переговоры на равных' },
+const STAGES = [
+  { icon: 'Handshake', title: 'Контакт', text: 'Как менеджер начинает разговор и получает право на следующий вопрос.' },
+  { icon: 'Search', title: 'Диагностика', text: 'Умеет ли он понять реальный интерес клиента или сразу начинает рассказывать о товаре.' },
+  { icon: 'Package', title: 'Предложение', text: 'Как переводит характеристики продукта в коммерческую ценность.' },
+  { icon: 'Tag', title: 'Цена', text: 'Что происходит после первого «дорого».' },
+  { icon: 'ShieldAlert', title: 'Возражения', text: 'Начинает ли оправдываться, отдавать скидку или способен продолжать переговоры.' },
+  { icon: 'Compass', title: 'Позиция', text: 'Кто ведёт переговоры, а кто отдаёт управление клиенту.' },
 ];
 
-const OWNER_POINTS = [
-  { icon: 'Users', text: 'Кто в команде тянет сложные сделки, а кто просто отбывает номер.' },
-  { icon: 'TrendingDown', text: 'На каком этапе вы теряете маржу (первый контакт, защита цены, дожим).' },
-  { icon: 'Search', text: 'Где проблема в людях, а где слаб сам продукт и оффер компании.' },
+const OWNER_WHO = [
+  'способен вести сложные переговоры',
+  'работает по шаблону',
+  'теряется под давлением',
+  'слишком быстро отдаёт цену',
+  'умеет удерживать позицию',
 ];
 
-const PRODUCTS = [
-  {
-    emoji: '🩻',
-    title: '01. Рентген',
-    subtitle: 'Диагностический полигон',
-    price: '30 000 ₽',
-    meta: '4–5 часов · 4–8 человек',
-    bullets: [
-      'Экспресс-разбор текущего коммерческого предложения.',
-      'Переговорный стресс-тест на тренажёре «Город продаж».',
-      'Разбор поведения каждого участника и фиксация зон потери маржи.',
-    ],
-    footer: 'Вы покупаете не тренинг, а объективный снимок отдела продаж.',
-    cta: 'НАЗНАЧИТЬ РЕНТГЕН — 30 000 ₽',
-    preset: 'Рентген · Диагностический полигон',
-  },
-  {
-    emoji: '🔄',
-    title: '02. Перезагрузка',
-    subtitle: 'От оффера до реального клиента',
-    price: '100 000 ₽',
-    meta: '3 дня',
-    bullets: [
-      'День 1. Продукт: пересобираем оффер под реальную боль клиента, убираем слабые места.',
-      'День 2. Полигон: моделируем жёсткие переговорные сценарии, ставим устойчивость к отказам.',
-      'День 3. Поле: выходим в прямые контакты с реальными клиентами под моим живым наблюдением.',
-    ],
-    footer: 'Проверяем новую логику диалога на реальном рынке.',
-    cta: 'ОБСУДИТЬ ПЕРЕЗАГРУЗКУ — 100 000 ₽',
-    preset: 'Перезагрузка · От оффера до реального клиента',
-  },
+const OWNER_WHERE = [
+  'ломается алгоритм продажи',
+  'теряется ценность продукта',
+  'возникает зависимость от скидки',
+  'команда перестаёт управлять разговором',
 ];
 
-const NO_TRAINING = [
-  'Написать скрипт помогут скриптологи.',
-  'Настроить воронку — интеграторы CRM.',
-  'Накачать мотивацией — бизнес-тренеры.',
+const CHAIN = ['интерес клиента', 'потребность', 'ценность', 'позиция', 'переговоры', 'следующий шаг'];
+
+const FIT = [
+  'Компания работает с B2B-клиентами',
+  'В отделе от 5 менеджеров',
+  'Есть РОП или коммерческий директор',
+  'Уже существует структура продаж',
+  'Есть заданный алгоритм работы с клиентом',
+  'Менеджеры регулярно ведут реальные переговоры',
+  'Руководитель действительно хочет увидеть, что происходит внутри отдела',
 ];
 
-const ABOUT_TAGS = ['B2B', 'Продуктовый аудит', 'Переговоры', 'Бокс'];
+const AFTER_PILOT = [
+  { icon: 'Repeat', title: 'Полигон раз в неделю', text: 'Регулярная переговорная практика с командой.' },
+  { icon: 'Workflow', title: 'Разбор алгоритма продаж', text: 'Если проблема оказалась не только в менеджерах, а в самой логике продажи.' },
+  { icon: 'RefreshCw', title: 'Перезагрузка отдела', text: 'Продукт → оффер → переговоры → реальные контакты с рынком.' },
+];
+
+const ABOUT_TAGS = ['B2B', 'Продукт', 'Коммерция', 'Переговоры'];
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -120,6 +103,20 @@ function useInView(threshold = 0.12) {
   return { ref, inView };
 }
 
+function Reveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const { ref, inView } = useInView(0.08);
+  return (
+    <div ref={ref} className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} ${className}`}
+      style={{ transitionDelay: `${delay}s` }}>
+      {children}
+    </div>
+  );
+}
+
+const CARD_STYLE = { background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' };
+const ALT_BG = { borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' };
+const LINE_TOP = { borderTop: '1px solid rgba(201,169,110,0.1)' };
+
 function isFormValid(form: FormState) {
   return form.name.trim() !== '' && form.company.trim() !== '' && form.phone.trim() !== '';
 }
@@ -127,7 +124,7 @@ function isFormValid(form: FormState) {
 async function sendLead(form: FormState, type: string) {
   try {
     const channelLabel = CHANNELS.find(c => c.value === form.channel)?.label || '—';
-    const interestLabel = INTERESTS.find(i => i.value === form.interest)?.label || '—';
+    const sizeLabel = TEAM_SIZES.find(i => i.value === form.interest)?.label || '—';
     const res = await fetch('https://functions.poehali.dev/fc323d06-bbf9-4e34-b478-9a1d63552d0d', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -136,7 +133,7 @@ async function sendLead(form: FormState, type: string) {
         phone: form.phone,
         company: form.company,
         city: form.city,
-        message: `Канал связи: ${channelLabel}. Email: ${form.email || '—'}. Время связи: ${form.time || '—'}. Интересует: ${interestLabel}.`,
+        message: `Канал связи: ${channelLabel}. Email: ${form.email || '—'}. Время связи: ${form.time || '—'}. Менеджеров в отделе: ${sizeLabel}.`,
         type,
       }),
     });
@@ -158,6 +155,23 @@ function LeadFields({ form, setForm, wide }: { form: FormState; setForm: React.D
         value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} />
       <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Город"
         value={form.city} onChange={e => setForm(p => ({ ...p, city: e.target.value }))} />
+
+      <div className={span}>
+        <p className="text-white/40 text-xs tracking-wide uppercase mb-2">Сколько менеджеров в отделе продаж</p>
+        <div className="flex flex-wrap gap-2">
+          {TEAM_SIZES.map(i => (
+            <button key={i.value} type="button" onClick={() => setForm(p => ({ ...p, interest: i.value }))}
+              className="px-3 py-2 rounded-sm text-xs transition-colors"
+              style={{
+                background: form.interest === i.value ? 'rgba(201,169,110,0.18)' : 'rgba(255,255,255,0.05)',
+                border: `1px solid ${form.interest === i.value ? 'rgba(201,169,110,0.7)' : 'rgba(201,169,110,0.25)'}`,
+                color: form.interest === i.value ? '#e8d5a3' : 'rgba(245,240,232,0.7)',
+              }}>
+              {i.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className={span}>
         <p className="text-white/40 text-xs tracking-wide uppercase mb-2">Приоритетный канал связи</p>
@@ -184,28 +198,11 @@ function LeadFields({ form, setForm, wide }: { form: FormState; setForm: React.D
 
       <input className="input-dark rounded-sm px-4 py-3 text-sm w-full" placeholder="Удобное время для связи"
         value={form.time} onChange={e => setForm(p => ({ ...p, time: e.target.value }))} />
-
-      <div className={span}>
-        <p className="text-white/40 text-xs tracking-wide uppercase mb-2">Что интересует</p>
-        <div className="flex flex-wrap gap-2">
-          {INTERESTS.map(i => (
-            <button key={i.value} type="button" onClick={() => setForm(p => ({ ...p, interest: i.value }))}
-              className="px-3 py-2 rounded-sm text-xs transition-colors"
-              style={{
-                background: form.interest === i.value ? 'rgba(201,169,110,0.18)' : 'rgba(255,255,255,0.05)',
-                border: `1px solid ${form.interest === i.value ? 'rgba(201,169,110,0.7)' : 'rgba(201,169,110,0.25)'}`,
-                color: form.interest === i.value ? '#e8d5a3' : 'rgba(245,240,232,0.7)',
-              }}>
-              {i.label}
-            </button>
-          ))}
-        </div>
-      </div>
     </>
   );
 }
 
-function Modal({ open, onClose, presetTitle }: { open: boolean; onClose: () => void; presetTitle?: string }) {
+function Modal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -213,7 +210,7 @@ function Modal({ open, onClose, presetTitle }: { open: boolean; onClose: () => v
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await sendLead(form, presetTitle || 'header');
+    await sendLead(form, 'Рыночный тест · 9 000 ₽');
     setSent(true);
     setLoading(false);
   };
@@ -232,19 +229,19 @@ function Modal({ open, onClose, presetTitle }: { open: boolean; onClose: () => v
           <div className="p-10 text-center">
             <div className="text-5xl mb-4">🤝</div>
             <p className="font-cormorant text-2xl gold-text mb-2">Заявка принята</p>
-            <p className="text-white/60 font-golos text-sm">Андрей напишет вам лично в ближайшее время</p>
+            <p className="text-white/60 font-golos text-sm">Андрей посмотрит, подходит ли ваша команда под формат, и напишет вам лично</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-8 flex flex-col gap-4">
             <h3 className="font-cormorant text-2xl text-off-white mb-1">
-              {presetTitle ? presetTitle : 'Назначить дату полигона'}
+              Заявка на рыночный тест
             </h3>
             <p className="text-white/50 text-sm font-golos mb-2">
-              Оставьте контакты — обсудим детали и подберём формат
+              Расскажите о компании и отделе продаж — я посмотрю, подходит ли ваша команда под формат
             </p>
             <LeadFields form={form} setForm={setForm} />
             <button type="submit" disabled={loading || !isFormValid(form)} className="btn-gold rounded py-3 text-sm mt-2 disabled:opacity-40">
-              {loading ? 'Отправляем...' : 'Отправить'}
+              {loading ? 'Отправляем...' : 'Подать заявку'}
             </button>
           </form>
         )}
@@ -271,7 +268,7 @@ function ContactForm() {
       <div className="text-center py-10">
         <div className="text-4xl mb-4">🤝</div>
         <p className="font-cormorant text-2xl gold-text mb-2">Заявка принята</p>
-        <p className="text-white/50 text-sm">Андрей напишет вам лично в ближайшее время</p>
+        <p className="text-white/50 text-sm">Андрей посмотрит, подходит ли ваша команда под формат, и напишет вам лично</p>
       </div>
     );
   }
@@ -282,29 +279,29 @@ function ContactForm() {
       <div className="md:col-span-2">
         <button type="submit" disabled={loading || !isFormValid(form)}
           className="btn-gold rounded-sm py-4 px-12 text-sm tracking-wider uppercase disabled:opacity-40">
-          {loading ? 'Отправляем...' : 'Назначить дату полигона'}
+          {loading ? 'Отправляем...' : 'Подать заявку'}
         </button>
       </div>
     </form>
   );
 }
 
+function SectionTitle({ eyebrow, children }: { eyebrow?: string; children: React.ReactNode }) {
+  return (
+    <div className="text-center mb-12">
+      {eyebrow && <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">{eyebrow}</p>}
+      <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light leading-tight">{children}</h2>
+      <div className="section-divider mt-6" />
+    </div>
+  );
+}
+
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalPreset, setModalPreset] = useState<string | undefined>(undefined);
   const [photoIdx, setPhotoIdx] = useState(0);
-
-  const openModal = (preset?: string) => {
-    setModalPreset(preset);
-    setModalOpen(true);
-  };
-
   const hero = useInView(0.05);
-  const intro = useInView(0.1);
-  const products = useInView(0.1);
-  const faq = useInView(0.1);
-  const about = useInView(0.1);
-  const contact = useInView(0.1);
+
+  const openModal = () => setModalOpen(true);
 
   useEffect(() => {
     const interval = setInterval(() => setPhotoIdx(i => (i + 1) % 2), 5000);
@@ -315,7 +312,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-obsidian text-off-white font-golos overflow-x-hidden">
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} presetTitle={modalPreset} />
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} />
 
       {/* ШАПКА */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 md:px-12 py-4"
@@ -327,14 +324,15 @@ export default function Index() {
           </span>
         </div>
         <nav className="hidden lg:flex gap-6 text-xs text-white/40 tracking-widest uppercase">
-          <a href="#games" className="hover:text-white transition-colors">Полигон</a>
-          <a href="#products" className="hover:text-white transition-colors">Программы</a>
+          <a href="#test" className="hover:text-white transition-colors">Что тестируем</a>
+          <a href="#owner" className="hover:text-white transition-colors">Результат</a>
+          <a href="#format" className="hover:text-white transition-colors">Формат</a>
           <a href="#about" className="hover:text-white transition-colors">Обо мне</a>
           <a href="#contact" className="hover:text-white transition-colors">Контакты</a>
         </nav>
-        <button onClick={() => openModal()}
+        <button onClick={openModal}
           className="text-xs tracking-widest uppercase gold-text hover:opacity-70 transition-opacity border border-gold/30 px-4 py-2 hidden md:block">
-          Назначить полигон
+          Подать заявку
         </button>
         <a href="tel:89206200034" className="text-sm gold-text hover:opacity-80 transition-opacity font-medium md:hidden">
           8 920 620-00-34
@@ -349,207 +347,287 @@ export default function Index() {
             backgroundSize: '60px 60px'
           }} />
           <div className="relative z-10 max-w-xl">
-            <p className={`text-xs tracking-[0.3em] uppercase text-gold/70 mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            <p className={`text-[11px] tracking-[0.25em] uppercase text-gold/70 mb-3 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              Рыночный тест авторской технологии диагностики продаж
+            </p>
+            <p className={`inline-flex items-center gap-2 text-xs tracking-wide text-gold border border-gold/30 px-3 py-1.5 mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.1s' }}>
-              🩻 Рентген и перезагрузка отдела продаж
+              <Icon name="CalendarDays" size={13} />
+              5 компаний в Санкт-Петербурге · октябрь
             </p>
 
-            <h1 className={`font-cormorant font-light leading-[1.05] mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ fontSize: 'clamp(2.1rem, 4.6vw, 4rem)', transitionDelay: '0.2s' }}>
-              CRM работает.<br />Скрипты написаны.<br />
-              <span className="gold-gradient">А продаёт ли команда?</span>
+            <h1 className={`font-cormorant font-light leading-[1.1] mb-5 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.1rem)', transitionDelay: '0.2s' }}>
+              CRM работает.<br />Скрипты написаны.<br />Алгоритм продаж утверждён.<br />
+              <span className="gold-gradient">А что происходит, когда менеджер остаётся один на один с клиентом?</span>
             </h1>
 
-            <p className={`text-white/75 text-[15px] md:text-lg leading-relaxed mb-4 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            <p className={`text-white/75 text-[15px] md:text-base leading-relaxed mb-3 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
               style={{ transitionDelay: '0.28s' }}>
-              А в живом разговоре менеджер теряется: при первом «дорого» падает в скидку, читает заготовленный шаблон или отпускает клиента.
+              Я создал переговорный полигон, чтобы это увидеть. Не тренинг. Не лекция. Не игра ради игры.
             </p>
-
-            <p className={`text-white/75 text-[15px] md:text-lg leading-relaxed mb-10 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            <p className={`text-white/60 text-[14px] leading-relaxed mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
               style={{ transitionDelay: '0.34s' }}>
-              Бизнес-полигон Андрея Дорошенко — это 4–5 часов переговорного стресс-теста. Я не учу менеджеров «правильно продавать». Я создаю условия, в которых видно, как они продают на самом деле.
+              5 часов плотной практики с вашим отделом продаж. На выходе собственник получает срез команды и рекомендации, а менеджеры проходят реальные переговорные ситуации через другой коммерческий угол.
             </p>
 
-            <div className={`flex flex-col sm:flex-row gap-4 mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            <div className={`flex flex-col sm:flex-row sm:items-center gap-5 mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.5s' }}>
-              <button onClick={() => openModal('Рентген · Диагностический полигон')} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
-                Назначить дату полигона
+              <button onClick={openModal} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
+                Подать заявку на тест
               </button>
+              <p className="text-off-white">
+                <span className="font-cormorant text-3xl gold-text font-semibold">9 000 ₽</span>
+                <span className="block text-xs text-white/50">участие в рыночном тесте</span>
+              </p>
             </div>
 
             <p className={`flex items-center gap-2 text-gold/80 text-xs tracking-wide transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '0.6s' }}>
               <Icon name="MapPin" size={14} className="shrink-0" />
-              Санкт-Петербург · Москва · Выезд на предприятие
+              Санкт-Петербург · на вашей территории или выбранной площадке
             </p>
           </div>
         </div>
 
         <div className="hidden md:block absolute right-0 top-16 bottom-0 w-1/2">
-          <div className="absolute inset-0 z-10" style={{
-            background: 'linear-gradient(to right, #0A0A0A 0%, transparent 35%)'
-          }} />
-          <img src={PHOTO_HERO} alt="Андрей Дорошенко"
-            className="w-full h-full object-cover"
+          <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(to right, #0A0A0A 0%, transparent 35%)' }} />
+          <img src={PHOTO_HERO} alt="Андрей Дорошенко" className="w-full h-full object-cover"
             style={{ filter: 'brightness(0.85) contrast(1.05)', objectPosition: 'top' }} />
-          <div className="absolute inset-0 z-10" style={{
-            background: 'linear-gradient(to top, #0A0A0A 0%, transparent 40%)'
-          }} />
+          <div className="absolute inset-0 z-10" style={{ background: 'linear-gradient(to top, #0A0A0A 0%, transparent 40%)' }} />
         </div>
       </section>
 
-      {/* ПОЧЕМУ БУКСУЮТ */}
-      <section id="games" ref={intro.ref} className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+      {/* ЧТО ТЕСТИРУЕМ */}
+      <section id="test" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
         <div className="max-w-4xl mx-auto">
-          <div className={`text-center mb-14 transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-6">
-              Почему привычные инструменты буксуют
-            </h2>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-xl mx-auto">
-              Продажи — это не процедура. Это точный диалог, скорость мышления и характер.
+          <Reveal>
+            <SectionTitle eyebrow="Что мы тестируем">
+              CRM показывает, что произошло со сделкой.<br /><span className="gold-text">Но не показывает, почему менеджер потерял клиента</span>
+            </SectionTitle>
+            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-4">
+              Обычно руководитель видит продажи через CRM, отчёты и цифры. На полигоне мы смотрим на другое: как менеджер думает и действует в момент переговоров.
             </p>
+            <div className="text-center">
+              <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-4 px-6 py-3 text-sm tracking-wide rounded-sm border border-gold/30 gold-text hover:bg-gold/10 transition-colors">
+                <Icon name="Send" size={16} />
+                Подписаться на телеграм-канал «Дорошенко — бизнес-игры»
+              </a>
+            </div>
+          </Reveal>
 
-            <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-8 px-6 py-3 text-sm tracking-wide rounded-sm border border-gold/30 gold-text hover:bg-gold/10 transition-colors">
-              <Icon name="Send" size={16} />
-              Подписаться на телеграм-канал «Дорошенко — бизнес-игры»
-            </a>
-          </div>
-
-          <div className={`grid sm:grid-cols-3 gap-4 transition-all duration-700 ${intro.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-            style={{ transitionDelay: '0.15s' }}>
-            {REASONS.map((s, i) => (
-              <div key={i} className="p-7 rounded-sm text-left"
-                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
-                <Icon name={s.icon} size={26} className="text-gold mb-4" />
-                <p className="font-cormorant text-xl gold-text mb-2">{s.title}</p>
-                <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
-              </div>
-            ))}
-          </div>
+          <Reveal delay={0.1} className="mt-14">
+            <p className="text-center text-white/50 text-sm tracking-wide uppercase mb-6">Что происходит, когда:</p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {SITUATIONS.map((s, i) => (
+                <div key={i} className="p-5 rounded-sm flex items-center gap-3" style={CARD_STYLE}>
+                  <Icon name="Minus" size={16} className="text-gold shrink-0" />
+                  <p className="text-white/75 text-sm">{s}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-center font-cormorant text-2xl gold-text mt-10">
+              Вот здесь и проявляется реальная модель продаж.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* ЧТО ПРОИСХОДИТ НА ПОЛИГОНЕ */}
+      {/* 5 ЧАСОВ */}
       <section className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-6">
-              Что происходит <span className="gold-text">на полигоне</span>
-            </h2>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-2xl mx-auto">
-              Мы убираем защитный контур: скрипты, регламенты и «я уточню и перезвоню». Остаётся чистый контакт: клиент → возражение → защита позиции.
-              На переговорном тренажёре команда проходит через дефицит бюджета, прессинг по цене и конкурентов. За 4 часа становится видно:
+          <Reveal>
+            <SectionTitle eyebrow="5 часов. Один отдел. Много живых ситуаций">
+              Мы создаём условия, в которых видно, как они продают сейчас
+            </SectionTitle>
+            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+              Мы не рассказываем менеджерам, как надо продавать. Команда проходит переговорные ситуации, построенные вокруг вашей коммерческой реальности. Смотрим:
             </p>
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-4">
-            {POLYGON_POINTS.map((s, i) => (
-              <div key={i} className="p-7 rounded-sm text-left flex items-start gap-3"
-                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
-                <Icon name={s.icon} size={22} className="text-gold shrink-0 mt-0.5" />
-                <p className="text-white/70 text-sm leading-relaxed">{s.text}</p>
-              </div>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {STAGES.map((s, i) => (
+              <Reveal key={i} delay={i * 0.05}>
+                <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                  <Icon name={s.icon} size={26} className="text-gold mb-4" />
+                  <p className="font-cormorant text-xl gold-text uppercase tracking-wider mb-2">{s.title}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ЧТО ЗАБИРАЕТ СОБСТВЕННИК */}
-      <section className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+      {/* СОБСТВЕННИК */}
+      <section id="owner" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-4">
-              Что забирает собственник
-            </h2>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-2xl mx-auto">
-              Главный результат — не игра, а прозрачная картина вашего сбыта. Вы увидите без отчётов и прикрас:
-            </p>
-            <div className="section-divider mt-6" />
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-4 mb-8">
-            {OWNER_POINTS.map((w, i) => (
-              <div key={i} className="p-7 rounded-sm text-left flex items-start gap-3"
-                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' }}>
-                <Icon name={w.icon} size={22} className="text-gold shrink-0 mt-0.5" />
-                <p className="text-white/70 text-sm leading-relaxed">{w.text}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-white/70 text-[15px] leading-relaxed max-w-xl mx-auto">
-            Итог: карта переговорных компетенций команды и конкретный следующий шаг для РОПа.
-          </p>
-        </div>
-      </section>
-
-      {/* ПРОДУКТЫ */}
-      <section id="products" ref={products.ref} className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-4xl mx-auto">
-          <div className={`text-center mb-14 transition-all duration-700 ${products.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Два формата
-            </h2>
-            <div className="section-divider mt-6" />
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {PRODUCTS.map((p, i) => (
-              <div key={i}
-                className={`p-8 rounded-sm flex flex-col transition-all duration-700 ${products.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.16)', transitionDelay: `${0.1 + i * 0.1}s` }}>
-                <div className="text-4xl mb-4">{p.emoji}</div>
-                <p className="text-off-white font-medium text-lg mb-1 leading-snug">{p.title}</p>
-                <p className="text-white/50 text-sm mb-3">{p.subtitle}</p>
-                <p className="font-cormorant text-3xl gold-text font-semibold mb-3">{p.price}</p>
-                <p className="text-xs tracking-widest uppercase text-white/30 mb-5">{p.meta}</p>
-                <ul className="text-white/65 text-sm leading-relaxed mb-5 flex-1 flex flex-col gap-3">
-                  {p.bullets.map((b, j) => (
-                    <li key={j} className="flex gap-2">
-                      <Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />
-                      <span>{b}</span>
+          <Reveal>
+            <SectionTitle eyebrow="Что получает собственник">
+              Не ещё один отчёт.<br /><span className="gold-text">А срез отдела продаж</span>
+            </SectionTitle>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Reveal>
+              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                <p className="font-cormorant text-2xl gold-text mb-4">Кто</p>
+                <ul className="flex flex-col gap-3">
+                  {OWNER_WHO.map((t, i) => (
+                    <li key={i} className="flex gap-2 text-white/65 text-sm">
+                      <Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />{t}
                     </li>
                   ))}
                 </ul>
-                <p className="text-gold/70 text-xs italic mb-6">{p.footer}</p>
-                <button onClick={() => openModal(p.preset)}
-                  className="btn-gold px-6 py-4 text-sm tracking-wider uppercase rounded-sm">
-                  {p.cta}
-                </button>
               </div>
-            ))}
+            </Reveal>
+            <Reveal delay={0.08}>
+              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                <p className="font-cormorant text-2xl gold-text mb-4">Где</p>
+                <ul className="flex flex-col gap-3">
+                  {OWNER_WHERE.map((t, i) => (
+                    <li key={i} className="flex gap-2 text-white/65 text-sm">
+                      <Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />{t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                <p className="font-cormorant text-2xl gold-text mb-4">Что делать</p>
+                <p className="text-white/65 text-sm leading-relaxed">
+                  Собственник и РОП получают конкретные рекомендации по дальнейшей работе с командой и алгоритмом продаж.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* БЕЗ СКАЗОК */}
-      <section id="faq" ref={faq.ref} className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)' }}>
+      {/* МЕНЕДЖЕРЫ */}
+      <section className="py-24 px-6 md:px-16 lg:px-24">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <SectionTitle eyebrow="Что получают менеджеры">
+              Не очередную презентацию на 120 слайдов
+            </SectionTitle>
+            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+              5 часов практики. Они пробуют другую логику построения сделки:
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+              {CHAIN.map((c, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="px-4 py-2 rounded-sm text-sm text-off-white" style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.3)' }}>{c}</span>
+                  {i < CHAIN.length - 1 && <Icon name="ArrowRight" size={16} className="text-gold/60" />}
+                </div>
+              ))}
+            </div>
+            <p className="text-white/60 text-[15px] leading-relaxed max-w-2xl mx-auto">
+              Задача не в том, чтобы заменить один скрипт другим. Задача — открыть менеджеру другой способ думать о продаже.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* А ЧТО ПОЛУЧАЮ Я */}
+      <section className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
         <div className="max-w-3xl mx-auto text-center">
-          <div className={`transition-all duration-700 ${faq.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Без сказок про «+40% к выручке»</p>
-            <div className="section-divider mb-8" />
-            <p className="text-white/70 text-lg leading-relaxed mb-4">
-              Я 15 лет в B2B и не раздаю пустых обещаний.
+          <Reveal>
+            <SectionTitle eyebrow="А что получаю я?">
+              Тоже честно
+            </SectionTitle>
+            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-4">
+              Я вывожу авторскую технологию на рынок и сейчас проверяю её на реальных B2B-командах. Мне нужны 5 компаний в Санкт-Петербурге, чтобы пройти этот этап вместе с разными продуктами, рынками и отделами продаж.
             </p>
-            <p className="text-white/60 text-[15px] leading-relaxed">
-              Если продукт потерял ценность на рынке — бессмысленно дрессировать сейлзов. Сначала нужно пересобрать позиционирование.
-              Если продукт сильный, но команда боится звонить — полигон убирает этот затык за один день.
+            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-8">
+              Поэтому сейчас компания участвует в тесте по специальной цене:
             </p>
+            <p className="font-cormorant text-6xl gold-text font-semibold mb-4">9 000 ₽</p>
+            <p className="text-white/50 text-sm">
+              Это не «скидка на тренинг». Это цена участия в рыночном тесте технологии.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* КОМУ ПОДХОДИТ + ФОРМАТ */}
+      <section id="format" className="py-24 px-6 md:px-16 lg:px-24">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <SectionTitle eyebrow="Кому подходит полигон">
+              Ваш отдел подходит, если:
+            </SectionTitle>
+          </Reveal>
+          <div className="grid md:grid-cols-5 gap-6">
+            <Reveal className="md:col-span-3">
+              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                <ul className="flex flex-col gap-3">
+                  {FIT.map((t, i) => (
+                    <li key={i} className="flex gap-3 text-white/75 text-sm">
+                      <Icon name="Check" size={17} className="text-gold shrink-0 mt-0.5" />{t}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 pt-5 flex gap-3 text-sm text-white/50" style={{ borderTop: '1px solid rgba(201,169,110,0.14)' }}>
+                  <Icon name="X" size={17} className="text-white/30 shrink-0 mt-0.5" />
+                  <p><span className="text-white/70">Не подходит,</span> если продажи пока строятся с нуля и нет команды, которую можно диагностировать.</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1} className="md:col-span-2">
+              <div className="p-7 rounded-sm h-full flex flex-col" style={{ background: 'rgba(201,169,110,0.07)', border: '1px solid rgba(201,169,110,0.3)' }}>
+                <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Формат</p>
+                <p className="font-cormorant text-3xl text-off-white mb-1">1 день · 5 часов</p>
+                <p className="text-white/60 text-sm mb-4">5+ менеджеров</p>
+                <p className="text-white/60 text-sm leading-relaxed mb-4">
+                  РОП / коммерческий директор — обязательно присутствует хотя бы на части работы и получает итоговый разбор.
+                </p>
+                <p className="text-white/60 text-sm leading-relaxed mb-6">
+                  <span className="text-off-white">Где:</span> на территории вашей компании или на выбранной площадке в Санкт-Петербурге.
+                </p>
+                <div className="mt-auto">
+                  <p className="text-xs tracking-widest uppercase text-white/40 mb-1">Стоимость участия в тесте</p>
+                  <p className="font-cormorant text-4xl gold-text font-semibold mb-1">9 000 ₽</p>
+                  <p className="text-gold/80 text-sm mb-5">Только 5 компаний.</p>
+                  <button onClick={openModal} className="btn-gold w-full px-6 py-4 text-sm tracking-wider uppercase rounded-sm">
+                    Подать заявку на тест
+                  </button>
+                </div>
+              </div>
+            </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ПОЧЕМУ Я ЭТО ДЕЛАЮ */}
+      <section className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
+        <div className="max-w-3xl mx-auto text-center">
+          <Reveal>
+            <SectionTitle eyebrow="Почему я это делаю">
+              Что происходит с продажей, когда начинается настоящий разговор
+            </SectionTitle>
+            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-4">
+              Я 15 лет работаю на стыке B2B, маркетинга, продукта и коммерции. Выводил продукты на федеральный рынок, создавал новые категории, работал с производственными и коммерческими компаниями.
+            </p>
+            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-6">
+              В этой технологии я соединяю то, что обычно существует отдельно:
+            </p>
+            <p className="font-cormorant text-xl md:text-2xl gold-text mb-6">
+              продукт → алгоритм продаж → переговоры → поведение менеджера → результат сделки
+            </p>
+            <p className="text-white/50 text-[15px] leading-relaxed">
+              Я не хочу ещё раз рассказывать рынку, что «продажи — это важно». Я хочу показать, что происходит с продажей в тот момент, когда начинается настоящий разговор.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       {/* ОБО МНЕ */}
-      <section id="about" ref={about.ref} className="py-24 px-6 md:px-16 lg:px-24"
-        style={{ borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' }}>
+      <section id="about" className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className={`transition-all duration-700 ${about.inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
-              style={{ transitionDelay: '0.1s' }}>
+            <Reveal>
               <div className="relative">
                 <div className="aspect-[3/4] max-w-sm rounded-sm overflow-hidden relative"
                   style={{ border: '1px solid rgba(201,169,110,0.2)' }}>
@@ -567,11 +645,10 @@ export default function Index() {
                   ))}
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className={`transition-all duration-700 ${about.inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
-              style={{ transitionDelay: '0.2s' }}>
-              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Кто ведёт</p>
+            <Reveal delay={0.1}>
+              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Об авторе</p>
               <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light mb-6">
                 Андрей Дорошенко
               </h2>
@@ -584,77 +661,122 @@ export default function Index() {
                 ))}
               </div>
               <p className="text-white/70 text-lg leading-relaxed mb-4">
-                15 лет практики на стыке реального B2B-маркетинга, продуктового аудита и коммерции.
+                15 лет практики в реальном B2B.
               </p>
               <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Выводил на федеральный рынок бренд «Чебупели» — продукт, который встал на полки по всей стране и с нуля создал новую категорию.
-              </p>
-              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Работал с Федерацией бокса России — знаю изнутри, как воспитывать выдержку под прессингом и характер побеждать на характере.
-              </p>
-              <p className="text-white/50 text-[15px] leading-relaxed">
                 Автор бизнес-симуляции «Город продаж».
               </p>
-            </div>
+              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
+                Создавал маркетинговые и коммерческие стратегии для производственных компаний.
+              </p>
+              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
+                Выводил на федеральный рынок бренд «Чебупели» и участвовал в создании новой продуктовой категории.
+              </p>
+              <p className="text-white/50 text-[15px] leading-relaxed mb-6">
+                Практика антикризисного управления и фасилитации стратегических команд.
+              </p>
+              <div className="p-5 rounded-sm" style={CARD_STYLE}>
+                <p className="flex items-center gap-2 text-xs tracking-widest uppercase gold-text mb-3">
+                  <Icon name="GraduationCap" size={15} />
+                  Образование
+                </p>
+                <ul className="flex flex-col gap-2 text-white/65 text-sm leading-relaxed">
+                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Экономическое высшее образование</li>
+                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Диплом антикризисного управляющего</li>
+                  <li className="flex gap-2"><Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />Диплом фасилитатора школы НЛП Плигина и Герасимова</li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* НЕ НУЖЕН ЕЩЁ ОДИН ТРЕНИНГ */}
-      <section className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light mb-8">
-            Вам не нужен ещё один тренинг
-          </h2>
-          <div className="flex flex-col gap-3 max-w-lg mx-auto mb-8 text-left">
-            {NO_TRAINING.map((t, i) => (
-              <div key={i} className="flex items-center gap-3 text-white/50 text-[15px]">
-                <Icon name="X" size={16} className="text-white/25 shrink-0" />
-                <span>{t}</span>
-              </div>
+      {/* ПОСЛЕ ПИЛОТА */}
+      <section className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <SectionTitle eyebrow="После пилота">
+              Полигон не заканчивается одним днём
+            </SectionTitle>
+            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
+              Если после диагностики становится понятно, что отделу нужна системная работа, возможны следующие форматы:
+            </p>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {AFTER_PILOT.map((s, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                  <Icon name={s.icon} size={26} className="text-gold mb-4" />
+                  <p className="font-cormorant text-xl gold-text uppercase tracking-wider mb-2">{s.title}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
-          <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto">
-            Если вам нужно увидеть, что происходит с вашей маржой и людьми в реальном контакте с клиентом — добро пожаловать на полигон.
+          <p className="text-center font-cormorant text-2xl text-off-white mt-10">
+            Сначала смотрим. Потом решаем, что менять.
           </p>
         </div>
       </section>
 
-      {/* КОНТАКТЫ */}
-      <section id="contact" ref={contact.ref} className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-3xl mx-auto">
-          <div className={`text-center mb-14 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-              Назначить дату полигона
-            </h2>
-            <div className="section-divider mt-6" />
-            <p className="text-white/50 text-[15px] leading-relaxed mt-6">
-              Свяжитесь напрямую — разберём ваш текущий оффер и назначим дату полигона.
+      {/* БЕЗ ОБЕЩАНИЙ */}
+      <section className="py-24 px-6 md:px-16 lg:px-24" style={LINE_TOP}>
+        <div className="max-w-3xl mx-auto text-center">
+          <Reveal>
+            <SectionTitle eyebrow="5 компаний. 1 месяц. Одна технология">
+              Я не обещаю вам «+40% к выручке»
+            </SectionTitle>
+            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-4">
+              И не обещаю, что после пяти часов все менеджеры станут суперпродавцами. Я обещаю другое: мы посмотрим, что происходит с вашей системой продаж в живом переговорном контакте.
             </p>
-          </div>
+            <div className="flex flex-col gap-2 text-white/55 text-[15px] leading-relaxed">
+              <p>Если проблема в менеджерах — это станет видно.</p>
+              <p>Если проблема в алгоритме — тоже.</p>
+              <p>Если проблема в самом предложении — её тоже не получится спрятать за красивым скриптом.</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <div className={`transition-all duration-700 mb-14 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '0.15s' }}>
+      {/* КОНТАКТЫ */}
+      <section id="contact" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-12">
+              <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
+                Хотите участвовать в рыночном тесте?
+              </h2>
+              <div className="section-divider mt-6" />
+              <p className="text-white/50 text-[15px] leading-relaxed mt-6">
+                Расскажите о компании и отделе продаж. Я посмотрю, подходит ли ваша команда под формат.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="mb-14">
             <ContactForm />
-          </div>
+          </Reveal>
 
-          <div className={`flex flex-wrap items-center justify-center gap-x-8 gap-y-4 transition-all duration-700 ${contact.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-            style={{ transitionDelay: '0.3s' }}>
-            <a href="tel:89206200034" className="flex items-center gap-2 gold-text hover:opacity-70 transition-opacity">
-              <Icon name="Phone" size={15} className="text-gold/60" />
-              <span className="font-cormorant text-xl">+7 (920) 620-00-34</span>
-              <span className="text-xs text-white/30">Телефон / WhatsApp</span>
-            </a>
-            <a href="mailto:and-doroshe@mail.ru" className="flex items-center gap-2 text-white/50 hover:text-white transition-colors">
-              <Icon name="Mail" size={15} className="text-white/30" />
-              <span className="text-sm">and-doroshe@mail.ru</span>
-            </a>
-            <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white/50 hover:text-gold transition-colors">
-              <Icon name="Send" size={15} className="text-white/30" />
-              <span className="text-sm">@adprodmarketing</span>
-            </a>
-          </div>
+          <Reveal delay={0.2}>
+            <p className="text-center text-white/60 text-sm mb-6">
+              Андрей Дорошенко · Санкт-Петербург · 5 компаний в октябре
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+              <a href="tel:89206200034" className="flex items-center gap-2 gold-text hover:opacity-70 transition-opacity">
+                <Icon name="Phone" size={15} className="text-gold/60" />
+                <span className="font-cormorant text-xl">+7 (920) 620-00-34</span>
+              </a>
+              <a href="mailto:and-doroshe@mail.ru" className="flex items-center gap-2 text-white/50 hover:text-white transition-colors">
+                <Icon name="Mail" size={15} className="text-white/30" />
+                <span className="text-sm">and-doroshe@mail.ru</span>
+              </a>
+              <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white/50 hover:text-gold transition-colors">
+                <Icon name="Send" size={15} className="text-white/30" />
+                <span className="text-sm">@adprodmarketing</span>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -663,7 +785,7 @@ export default function Index() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <p className="font-cormorant text-lg gold-text">Андрей Дорошенко</p>
-            <p className="text-white/25 text-xs mt-1">Бизнес-полигон для отдела продаж</p>
+            <p className="text-white/25 text-xs mt-1">Моя технология × ваш отдел продаж</p>
           </div>
           <div className="flex gap-4">
             <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
