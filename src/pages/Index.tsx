@@ -34,55 +34,24 @@ const TEAM_SIZES = [
   { value: '16+', label: '16 и больше' },
 ];
 
-const SITUATIONS = [
-  'клиент говорит «дорого»',
-  'появляется конкурент',
-  'закупщик давит на цену',
-  'клиент требует скидку',
-  'привычный скрипт перестаёт работать',
-  'нужно самому вести разговор, а не читать заготовку',
+const TICKER = ['Галя закрывает месяц', 'Регламент превыше клиента', 'Скидка вместо позиции', 'Прайс вместо разговора', 'Оклад без результата', 'Клиент ушёл к конкуренту'];
+
+const PRODUCT_POINTS = [
+  { icon: 'Flame', text: 'Учим включать мозги, держать позицию и дожимать сделку, а не кидаться прайс-листами.' },
+  { icon: 'Swords', text: 'Проверяем в бою, кто в отделе боец, а кто просиживает штаны за ваши деньги.' },
 ];
 
-const STAGES = [
-  { icon: 'Handshake', title: 'Контакт', text: 'Как менеджер начинает разговор и получает право на следующий вопрос.' },
-  { icon: 'Search', title: 'Диагностика', text: 'Умеет ли он понять реальный интерес клиента или сразу начинает рассказывать о товаре.' },
-  { icon: 'Package', title: 'Предложение', text: 'Как переводит характеристики продукта в коммерческую ценность.' },
-  { icon: 'Tag', title: 'Цена', text: 'Что происходит после первого «дорого».' },
-  { icon: 'ShieldAlert', title: 'Возражения', text: 'Начинает ли оправдываться, отдавать скидку или способен продолжать переговоры.' },
-  { icon: 'Compass', title: 'Позиция', text: 'Кто ведёт переговоры, а кто отдаёт управление клиенту.' },
+const RESULTS = [
+  { n: '01', title: 'Диагноз по каждому сотруднику', text: 'Кто приносит прибыль, а кто имитирует бурную деятельность.' },
+  { n: '02', title: 'Точки слива денег', text: 'Где именно в коммуникации с клиентами утекает выручка.' },
+  { n: '03', title: 'Понимание причины', text: 'Почему до расчётного счёта доходят крохи.' },
 ];
 
-const OWNER_WHO = [
-  'способен вести сложные переговоры',
-  'работает по шаблону',
-  'теряется под давлением',
-  'слишком быстро отдаёт цену',
-  'умеет удерживать позицию',
-];
-
-const OWNER_WHERE = [
-  'ломается алгоритм продажи',
-  'теряется ценность продукта',
-  'возникает зависимость от скидки',
-  'команда перестаёт управлять разговором',
-];
-
-const CHAIN = ['интерес клиента', 'потребность', 'ценность', 'позиция', 'переговоры', 'следующий шаг'];
-
-const FIT = [
-  'Компания работает с B2B-клиентами',
-  'В отделе от 5 менеджеров',
-  'Есть РОП или коммерческий директор',
-  'Уже существует структура продаж',
-  'Есть заданный алгоритм работы с клиентом',
-  'Менеджеры регулярно ведут реальные переговоры',
-  'Руководитель действительно хочет увидеть, что происходит внутри отдела',
-];
-
-const AFTER_PILOT = [
-  { icon: 'Repeat', title: 'Полигон раз в неделю', text: 'Регулярная переговорная практика с командой.' },
-  { icon: 'Workflow', title: 'Разбор алгоритма продаж', text: 'Если проблема оказалась не только в менеджерах, а в самой логике продажи.' },
-  { icon: 'RefreshCw', title: 'Перезагрузка отдела', text: 'Продукт → оффер → переговоры → реальные контакты с рынком.' },
+const RULES = [
+  { icon: 'Users', title: 'Для кого', text: 'Сфера B2B, отдел продаж от 5 человек. РОП или коммерческий директор на площадке — обязательно.' },
+  { icon: 'Banknote', title: 'Стоимость', text: '9 000 ₽ за 5-часовой тест.' },
+  { icon: 'FileText', title: 'Оплата', text: 'Строго по безналу. Для бухгалтерии — идеальный расход, на личную карту не принимаю.' },
+  { icon: 'Unlink', title: 'Без кабалы', text: 'Никакого долгосрочного сопровождения. Отработали, показали правду-матку, разошлись.' },
 ];
 
 const ABOUT_TAGS = ['B2B', 'Продукт', 'Коммерция', 'Переговоры'];
@@ -120,7 +89,6 @@ function Reveal({ children, className = '', delay = 0 }: { children: React.React
 
 const CARD_STYLE = { background: 'rgba(201,169,110,0.04)', border: '1px solid rgba(201,169,110,0.14)' };
 const ALT_BG = { borderTop: '1px solid rgba(201,169,110,0.1)', background: 'linear-gradient(180deg, #0A0A0A 0%, #111 100%)' };
-const LINE_TOP = { borderTop: '1px solid rgba(201,169,110,0.1)' };
 
 function isFormValid(form: FormState) {
   return form.name.trim() !== '' && form.company.trim() !== '' && form.phone.trim() !== '';
@@ -234,7 +202,7 @@ function Modal({ open, onClose }: { open: boolean; onClose: () => void }) {
           <div className="p-10 text-center">
             <div className="text-5xl mb-4">🤝</div>
             <p className="font-cormorant text-2xl gold-text mb-2">Заявка принята</p>
-            <p className="text-white/60 font-golos text-sm">Андрей посмотрит, подходит ли ваша команда под формат, и напишет вам лично</p>
+            <p className="text-white/60 font-golos text-sm">Андрей лично посмотрит заявку и напишет вам. Мест на тест всего 5</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-8 flex flex-col gap-4">
@@ -242,7 +210,7 @@ function Modal({ open, onClose }: { open: boolean; onClose: () => void }) {
               Заявка на рыночный тест
             </h3>
             <p className="text-white/50 text-sm font-golos mb-2">
-              Расскажите о компании и отделе продаж — я посмотрю, подходит ли ваша команда под формат
+              Только B2B, отдел продаж от 5 человек. Оплата по безналу, 9 000 ₽
             </p>
             <LeadFields form={form} setForm={setForm} />
             <button type="submit" disabled={loading || !isFormValid(form)} className="btn-gold rounded py-3 text-sm mt-2 disabled:opacity-40">
@@ -273,7 +241,7 @@ function ContactForm() {
       <div className="text-center py-10">
         <div className="text-4xl mb-4">🤝</div>
         <p className="font-cormorant text-2xl gold-text mb-2">Заявка принята</p>
-        <p className="text-white/50 text-sm">Андрей посмотрит, подходит ли ваша команда под формат, и напишет вам лично</p>
+        <p className="text-white/50 text-sm">Андрей лично посмотрит заявку и напишет вам. Мест на тест всего 5</p>
       </div>
     );
   }
@@ -283,8 +251,8 @@ function ContactForm() {
       <LeadFields form={form} setForm={setForm} wide />
       <div className="md:col-span-2">
         <button type="submit" disabled={loading || !isFormValid(form)}
-          className="btn-gold rounded-sm py-4 px-12 text-sm tracking-wider uppercase disabled:opacity-40">
-          {loading ? 'Отправляем...' : 'Подать заявку'}
+          className="btn-gold rounded-sm py-4 px-8 text-sm tracking-wider uppercase disabled:opacity-40 w-full md:w-auto">
+          {loading ? 'Отправляем...' : 'Подать заявку на тест · 9 000 ₽ по безналу'}
         </button>
       </div>
     </form>
@@ -340,10 +308,10 @@ export default function Index() {
           </span>
         </div>
         <nav className="hidden lg:flex gap-6 text-xs text-white/40 tracking-widest uppercase">
-          <a href="#test" className="hover:text-white transition-colors">Что тестируем</a>
+          <a href="#test" className="hover:text-white transition-colors">Диагноз</a>
           <a href="#owner" className="hover:text-white transition-colors">Результат</a>
-          <a href="#format" className="hover:text-white transition-colors">Формат</a>
-          <a href="#about" className="hover:text-white transition-colors">Обо мне</a>
+          <a href="#format" className="hover:text-white transition-colors">Условия</a>
+          <a href="#about" className="hover:text-white transition-colors">Автор</a>
           <a href="#contact" className="hover:text-white transition-colors">Контакты</a>
         </nav>
         <button onClick={openModal}
@@ -363,46 +331,29 @@ export default function Index() {
             backgroundSize: '60px 60px'
           }} />
           <div className="relative z-10 max-w-xl">
-            <p className={`text-[11px] tracking-[0.25em] uppercase text-gold/70 mb-3 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              Рыночный тест авторской технологии диагностики продаж
-            </p>
-            <p className={`inline-flex items-center gap-2 text-xs tracking-wide text-gold border border-gold/30 px-3 py-1.5 mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{ transitionDelay: '0.1s' }}>
-              <Icon name="CalendarDays" size={13} />
-              5 компаний в Санкт-Петербурге · октябрь
+            <p className={`inline-flex items-center gap-2 text-xs tracking-wide text-gold border border-gold/40 px-3 py-1.5 mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <Icon name="MapPin" size={13} />
+              Санкт-Петербург · Октябрь · Всего 5 компаний
             </p>
 
-            <h1 className={`font-cormorant font-light leading-[1.1] mb-5 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.1rem)', transitionDelay: '0.2s' }}>
-              CRM работает.<br />Скрипты написаны.<br />Алгоритм продаж утверждён.<br />
-              <span className="gold-gradient">А что происходит, когда менеджер остаётся один на один с клиентом?</span>
+            <h1 className={`font-cormorant font-light leading-[1.08] mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ fontSize: 'clamp(1.9rem, 3.8vw, 3.3rem)', transitionDelay: '0.15s' }}>
+              Хватит делать вид, что вы продаёте.{' '}
+              <span className="gold-gradient">Ваши менеджеры спят, а деньги на расчётник не идут.</span>
             </h1>
 
-            <p className={`text-white/75 text-[15px] md:text-base leading-relaxed mb-3 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '0.28s' }}>
-              Я создал переговорный полигон, чтобы это увидеть. Не тренинг. Не лекция. Не игра ради игры.
-            </p>
-            <p className={`text-white/60 text-[14px] leading-relaxed mb-8 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-              style={{ transitionDelay: '0.34s' }}>
-              5 часов плотной практики с вашим отделом продаж. На выходе собственник получает срез команды и рекомендации, а менеджеры проходят реальные переговорные ситуации через другой коммерческий угол.
+            <p className={`text-white/70 text-[15px] md:text-base leading-relaxed mb-9 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+              style={{ transitionDelay: '0.3s' }}>
+              Трафик есть, бюджеты жгутся, но клиент уходит к конкуренту, потому что манагер на звонке забыл открыть рот и сдулся при первом «дорого».
             </p>
 
-            <div className={`flex flex-col sm:flex-row sm:items-center gap-5 mb-6 transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{ transitionDelay: '0.5s' }}>
-              <button onClick={openModal} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm">
+            <div className={`transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              style={{ transitionDelay: '0.45s' }}>
+              <button onClick={openModal} className="btn-gold px-8 py-4 text-sm tracking-wider uppercase rounded-sm w-full sm:w-auto">
                 Подать заявку на тест
+                <span className="block text-[11px] tracking-wide normal-case opacity-80 mt-0.5">9 000 ₽ по безналу</span>
               </button>
-              <p className="text-off-white">
-                <span className="font-cormorant text-3xl gold-text font-semibold">9 000 ₽</span>
-                <span className="block text-xs text-white/50">участие в рыночном тесте</span>
-              </p>
             </div>
-
-            <p className={`flex items-center gap-2 text-gold/80 text-xs tracking-wide transition-all duration-700 ${hero.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{ transitionDelay: '0.6s' }}>
-              <Icon name="MapPin" size={14} className="shrink-0" />
-              Санкт-Петербург · на вашей территории или выбранной площадке
-            </p>
           </div>
         </div>
 
@@ -414,60 +365,60 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ЧТО ТЕСТИРУЕМ */}
-      <section id="test" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <SectionTitle eyebrow="Что мы тестируем">
-              CRM показывает, что произошло со сделкой.<br /><span className="gold-text">Но не показывает, почему менеджер потерял клиента</span>
-            </SectionTitle>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-4">
-              Обычно руководитель видит продажи через CRM, отчёты и цифры. На полигоне мы смотрим на другое: как менеджер думает и действует в момент переговоров.
-            </p>
-            <div className="text-center">
-              <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-6 py-3 text-sm tracking-wide rounded-sm border border-gold/30 gold-text hover:bg-gold/10 transition-colors">
-                <Icon name="Send" size={16} />
-                Подписаться на телеграм-канал «Дорошенко — бизнес-игры»
-              </a>
-            </div>
-          </Reveal>
+      {/* БЕГУЩАЯ СТРОКА */}
+      <div className="overflow-hidden py-3 border-y" style={{ borderColor: 'rgba(201,169,110,0.2)', background: 'rgba(201,169,110,0.06)' }}>
+        <div className="flex gap-10 whitespace-nowrap animate-ticker w-max">
+          {[...TICKER, ...TICKER, ...TICKER].map((t, i) => (
+            <span key={i} className="flex items-center gap-10 text-xs tracking-[0.25em] uppercase gold-text">
+              {t}<Icon name="Skull" size={13} className="text-gold/60" />
+            </span>
+          ))}
+        </div>
+      </div>
 
-          <Reveal delay={0.1} className="mt-14">
-            <p className="text-center text-white/50 text-sm tracking-wide uppercase mb-6">Что происходит, когда:</p>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {SITUATIONS.map((s, i) => (
-                <div key={i} className="p-5 rounded-sm flex items-center gap-3" style={CARD_STYLE}>
-                  <Icon name="Minus" size={16} className="text-gold shrink-0" />
-                  <p className="text-white/75 text-sm">{s}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-center font-cormorant text-2xl gold-text mt-10">
-              Вот здесь и проявляется реальная модель продаж.
+      {/* ДИАГНОЗ */}
+      <section id="test" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <SectionTitle eyebrow="Диагноз">
+              Победа бухгалтерии<br /><span className="gold-text">над здравым смыслом</span>
+            </SectionTitle>
+            <p className="text-white/75 text-[15px] md:text-lg leading-relaxed mb-5">
+              В девяноста процентах компаний никаких продаж давно нет. Есть <span className="gold-text">Галя, королева 1С</span>. Менеджер превратился в оператора ксерокса: его задача — завести номенклатуру, провести бумажку и отгрузить только тем, кому удобно. Чуть сложнее клиент — система падает в обморок, потому что «у нас регламент и Галя закрывает месяц».
             </p>
+            <p className="text-white/75 text-[15px] md:text-lg leading-relaxed mb-10">
+              Забудьте про инфоцыганские тренинги. Сегодня на дворе жёсткая борьба за каждого клиента. Ваши сотрудники сидят на окладе, пока вы теряете выручку.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="p-6 md:p-8 rounded-sm" style={{ background: 'rgba(201,169,110,0.07)', borderLeft: '3px solid #c9a96e' }}>
+              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-3">Кто говорит</p>
+              <p className="font-cormorant text-xl md:text-2xl text-off-white leading-snug">
+                Я не пифия бизнеса. Я практик с 15-летним опытом в жёстком B2B: заводы, производство, федеральные бренды вроде «Чебупелей». Прихожу и показываю без прикрас, почему ваши менеджеры — тормоза.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 5 ЧАСОВ */}
+      {/* ПРОДУКТ */}
       <section className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <SectionTitle eyebrow="5 часов. Один отдел. Много живых ситуаций">
-              Мы создаём условия, в которых видно, как они продают сейчас
+            <SectionTitle eyebrow="Что за полигон">
+              5 часов хирургии.<br /><span className="gold-text">Никаких лекций.</span>
             </SectionTitle>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
-              Мы не рассказываем менеджерам, как надо продавать. Команда проходит переговорные ситуации, построенные вокруг вашей коммерческой реальности. Смотрим:
+            <p className="text-center font-cormorant text-2xl md:text-3xl text-off-white max-w-2xl mx-auto mb-4">
+              Эмоциональный интеллект против ваших тупорылых скриптов.
             </p>
+            <p className="text-center text-white/50 text-sm tracking-wide uppercase mb-12">Что делаем с командой от 5 человек</p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {STAGES.map((s, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
-                  <Icon name={s.icon} size={26} className="text-gold mb-4" />
-                  <p className="font-cormorant text-xl gold-text uppercase tracking-wider mb-2">{s.title}</p>
-                  <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {PRODUCT_POINTS.map((p, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="p-8 rounded-sm h-full" style={CARD_STYLE}>
+                  <Icon name={p.icon} size={30} className="text-gold mb-5" />
+                  <p className="text-off-white text-lg leading-relaxed">{p.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -475,137 +426,58 @@ export default function Index() {
         </div>
       </section>
 
-      {/* СОБСТВЕННИК */}
+      {/* РЕЗУЛЬТАТ */}
       <section id="owner" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <SectionTitle eyebrow="Что получает собственник">
-              Не ещё один отчёт.<br /><span className="gold-text">А срез отдела продаж</span>
+            <SectionTitle eyebrow="Что получает директор">
+              Хирургический срез вместо <span className="gold-text">120-страничных отчётов</span>
             </SectionTitle>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-4">
-            <Reveal>
-              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
-                <p className="font-cormorant text-2xl gold-text mb-4">Кто</p>
-                <ul className="flex flex-col gap-3">
-                  {OWNER_WHO.map((t, i) => (
-                    <li key={i} className="flex gap-2 text-white/65 text-sm">
-                      <Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />{t}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
-                <p className="font-cormorant text-2xl gold-text mb-4">Где</p>
-                <ul className="flex flex-col gap-3">
-                  {OWNER_WHERE.map((t, i) => (
-                    <li key={i} className="flex gap-2 text-white/65 text-sm">
-                      <Icon name="ChevronRight" size={15} className="text-gold shrink-0 mt-0.5" />{t}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
-                <p className="font-cormorant text-2xl gold-text mb-4">Что делать</p>
-                <p className="text-white/65 text-sm leading-relaxed">
-                  Собственник и РОП получают конкретные рекомендации по дальнейшей работе с командой и алгоритмом продаж.
-                </p>
-              </div>
-            </Reveal>
+            {RESULTS.map((r, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
+                  <p className="font-cormorant text-5xl gold-text mb-4 leading-none">{r.n}</p>
+                  <p className="font-cormorant text-xl text-off-white mb-2">{r.title}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">{r.text}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* МЕНЕДЖЕРЫ */}
-      <section className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <SectionTitle eyebrow="Что получают менеджеры">
-              Не очередную презентацию на 120 слайдов
-            </SectionTitle>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-              5 часов практики. Они пробуют другую логику построения сделки:
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-              {CHAIN.map((c, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <span className="px-4 py-2 rounded-sm text-sm text-off-white" style={{ background: 'rgba(201,169,110,0.1)', border: '1px solid rgba(201,169,110,0.3)' }}>{c}</span>
-                  {i < CHAIN.length - 1 && <Icon name="ArrowRight" size={16} className="text-gold/60" />}
-                </div>
-              ))}
-            </div>
-            <p className="text-white/60 text-[15px] leading-relaxed max-w-2xl mx-auto">
-              Задача не в том, чтобы заменить один скрипт другим. Задача — открыть менеджеру другой способ думать о продаже.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* А ЧТО ПОЛУЧАЮ Я */}
-      <section className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
-        <div className="max-w-3xl mx-auto text-center">
-          <Reveal>
-            <SectionTitle eyebrow="А что получаю я?">
-              Тоже честно
-            </SectionTitle>
-            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-4">
-              Я вывожу авторскую технологию на рынок и сейчас проверяю её на реальных B2B-командах. Мне нужны 5 компаний в Санкт-Петербурге, чтобы пройти этот этап вместе с разными продуктами, рынками и отделами продаж.
-            </p>
-            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-8">
-              Поэтому сейчас компания участвует в тесте по специальной цене:
-            </p>
-            <p className="font-cormorant text-6xl gold-text font-semibold mb-4">9 000 ₽</p>
-            <p className="text-white/50 text-sm">
-              Это не «скидка на тренинг». Это цена участия в рыночном тесте технологии.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* КОМУ ПОДХОДИТ + ФОРМАТ */}
+      {/* УСЛОВИЯ */}
       <section id="format" className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <SectionTitle eyebrow="Кому подходит полигон">
-              Ваш отдел подходит, если:
+            <SectionTitle eyebrow="Кому и почём">
+              Жёсткие правила входа
             </SectionTitle>
           </Reveal>
           <div className="grid md:grid-cols-5 gap-6">
-            <Reveal className="md:col-span-3">
-              <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
-                <ul className="flex flex-col gap-3">
-                  {FIT.map((t, i) => (
-                    <li key={i} className="flex gap-3 text-white/75 text-sm">
-                      <Icon name="Check" size={17} className="text-gold shrink-0 mt-0.5" />{t}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 pt-5 flex gap-3 text-sm text-white/50" style={{ borderTop: '1px solid rgba(201,169,110,0.14)' }}>
-                  <Icon name="X" size={17} className="text-white/30 shrink-0 mt-0.5" />
-                  <p><span className="text-white/70">Не подходит,</span> если продажи пока строятся с нуля и нет команды, которую можно диагностировать.</p>
-                </div>
-              </div>
-            </Reveal>
+            <div className="md:col-span-3 grid sm:grid-cols-2 gap-4">
+              {RULES.map((r, i) => (
+                <Reveal key={i} delay={i * 0.06} className={i === 0 ? 'sm:col-span-2' : ''}>
+                  <div className="p-6 rounded-sm h-full" style={CARD_STYLE}>
+                    <p className="flex items-center gap-2 text-xs tracking-[0.25em] uppercase gold-text mb-3">
+                      <Icon name={r.icon} size={16} />{r.title}
+                    </p>
+                    <p className="text-white/75 text-sm leading-relaxed">{r.text}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
 
             <Reveal delay={0.1} className="md:col-span-2">
               <div className="p-7 rounded-sm h-full flex flex-col" style={{ background: 'rgba(201,169,110,0.07)', border: '1px solid rgba(201,169,110,0.3)' }}>
-                <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Формат</p>
+                <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Рыночный тест</p>
                 <p className="font-cormorant text-3xl text-off-white mb-1">1 день · 5 часов</p>
-                <p className="text-white/60 text-sm mb-4">5+ менеджеров</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-4">
-                  РОП / коммерческий директор — обязательно присутствует хотя бы на части работы и получает итоговый разбор.
-                </p>
-                <p className="text-white/60 text-sm leading-relaxed mb-6">
-                  <span className="text-off-white">Где:</span> на территории вашей компании или на выбранной площадке в Санкт-Петербурге.
-                </p>
+                <p className="text-white/60 text-sm mb-6">Санкт-Петербург, на вашей территории или выбранной площадке</p>
                 <div className="mt-auto">
-                  <p className="text-xs tracking-widest uppercase text-white/40 mb-1">Стоимость участия в тесте</p>
-                  <p className="font-cormorant text-4xl gold-text font-semibold mb-1">9 000 ₽</p>
-                  <p className="text-gold/80 text-sm mb-5">Только 5 компаний.</p>
+                  <p className="font-cormorant text-5xl gold-text font-semibold mb-1">9 000 ₽</p>
+                  <p className="text-gold/80 text-sm mb-5">По безналу. Только 5 компаний.</p>
                   <button onClick={openModal} className="btn-gold w-full px-6 py-4 text-sm tracking-wider uppercase rounded-sm">
                     Подать заявку на тест
                   </button>
@@ -613,29 +485,6 @@ export default function Index() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ПОЧЕМУ Я ЭТО ДЕЛАЮ */}
-      <section className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
-        <div className="max-w-3xl mx-auto text-center">
-          <Reveal>
-            <SectionTitle eyebrow="Почему я это делаю">
-              Что происходит с продажей, когда начинается настоящий разговор
-            </SectionTitle>
-            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-4">
-              Я 15 лет работаю на стыке B2B, маркетинга, продукта и коммерции. Выводил продукты на федеральный рынок, создавал новые категории, работал с брендом Федерации бокса России, Гусь-Хрустальным стекольным заводом, производственными и коммерческими компаниями.
-            </p>
-            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-6">
-              В этой технологии я соединяю то, что обычно существует отдельно:
-            </p>
-            <p className="font-cormorant text-xl md:text-2xl gold-text mb-6">
-              продукт → алгоритм продаж → переговоры → поведение менеджера → результат сделки
-            </p>
-            <p className="text-white/50 text-[15px] leading-relaxed">
-              Я не хочу ещё раз рассказывать рынку, что «продажи — это важно». Я хочу показать, что происходит с продажей в тот момент, когда начинается настоящий разговор.
-            </p>
-          </Reveal>
         </div>
       </section>
 
@@ -664,7 +513,7 @@ export default function Index() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Об авторе</p>
+              <p className="text-xs tracking-[0.3em] uppercase gold-text mb-4">Кто ведёт</p>
               <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light mb-6">
                 Андрей Дорошенко
               </h2>
@@ -677,25 +526,13 @@ export default function Index() {
                 ))}
               </div>
               <p className="text-white/70 text-lg leading-relaxed mb-4">
-                15 лет практики в реальном B2B.
+                15 лет в реальном B2B: заводы, федеральный ритейл, антикризис. Только голая экономика и переговорная практика.
               </p>
               <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Автор бизнес-симуляции «Город продаж».
-              </p>
-              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Создавал маркетинговые и коммерческие стратегии для производственных компаний.
-              </p>
-              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Выводил на федеральный рынок бренд «Чебупели» и участвовал в создании новой продуктовой категории.
-              </p>
-              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Работал с брендом Федерации бокса России.
-              </p>
-              <p className="text-white/50 text-[15px] leading-relaxed mb-4">
-                Работал с Гусь-Хрустальным стекольным заводом.
+                Автор бизнес-симуляции «Город продаж». Выводил на федеральный рынок бренд «Чебупели» и участвовал в создании новой продуктовой категории.
               </p>
               <p className="text-white/50 text-[15px] leading-relaxed mb-6">
-                Практика антикризисного управления и фасилитации стратегических команд.
+                Работал с брендом Федерации бокса России и с Гусь-Хрустальным стекольным заводом.
               </p>
               <div className="p-5 rounded-sm" style={CARD_STYLE}>
                 <p className="flex items-center gap-2 text-xs tracking-widest uppercase gold-text mb-3">
@@ -723,64 +560,19 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ПОСЛЕ ПИЛОТА */}
-      <section className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <SectionTitle eyebrow="После пилота">
-              Полигон не заканчивается одним днём
-            </SectionTitle>
-            <p className="text-white/60 text-[15px] md:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-12">
-              Если после диагностики становится понятно, что отделу нужна системная работа, возможны следующие форматы:
-            </p>
-          </Reveal>
-          <div className="grid sm:grid-cols-3 gap-4">
-            {AFTER_PILOT.map((s, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div className="p-7 rounded-sm h-full" style={CARD_STYLE}>
-                  <Icon name={s.icon} size={26} className="text-gold mb-4" />
-                  <p className="font-cormorant text-xl gold-text uppercase tracking-wider mb-2">{s.title}</p>
-                  <p className="text-white/60 text-sm leading-relaxed">{s.text}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <p className="text-center font-cormorant text-2xl text-off-white mt-10">
-            Сначала смотрим. Потом решаем, что менять.
-          </p>
-        </div>
-      </section>
-
-      {/* БЕЗ ОБЕЩАНИЙ */}
-      <section className="py-24 px-6 md:px-16 lg:px-24" style={LINE_TOP}>
-        <div className="max-w-3xl mx-auto text-center">
-          <Reveal>
-            <SectionTitle eyebrow="5 компаний. 1 месяц. Одна технология">
-              Я не обещаю вам «+40% к выручке»
-            </SectionTitle>
-            <p className="text-white/65 text-[15px] md:text-lg leading-relaxed mb-4">
-              И не обещаю, что после пяти часов все менеджеры станут суперпродавцами. Я обещаю другое: мы посмотрим, что происходит с вашей системой продаж в живом переговорном контакте.
-            </p>
-            <div className="flex flex-col gap-2 text-white/55 text-[15px] leading-relaxed">
-              <p>Если проблема в менеджерах — это станет видно.</p>
-              <p>Если проблема в алгоритме — тоже.</p>
-              <p>Если проблема в самом предложении — её тоже не получится спрятать за красивым скриптом.</p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* КОНТАКТЫ */}
+      {/* ФИНАЛ */}
       <section id="contact" className="py-24 px-6 md:px-16 lg:px-24" style={ALT_BG}>
         <div className="max-w-3xl mx-auto">
           <Reveal>
             <div className="text-center mb-12">
-              <h2 className="font-cormorant text-4xl md:text-5xl text-off-white font-light">
-                Хотите участвовать в рыночном тесте?
+              <h2 className="font-cormorant text-3xl md:text-5xl text-off-white font-light leading-tight">
+                Хотите и дальше платить тунеядцам, пока Галя печатает накладные — <span className="text-white/40">продолжайте.</span>{' '}
+                <span className="gold-gradient">Хотите встряхнуть болото — подавайте заявку.</span>
               </h2>
               <div className="section-divider mt-6" />
-              <p className="text-white/50 text-[15px] leading-relaxed mt-6">
-                Расскажите о компании и отделе продаж. Я посмотрю, подходит ли ваша команда под формат.
+              <p className="inline-flex items-center gap-2 mt-6 text-sm tracking-wide gold-text border border-gold/40 px-4 py-2">
+                <Icon name="Flame" size={15} />
+                Осталось мест: 5 из 5
               </p>
             </div>
           </Reveal>
@@ -791,7 +583,7 @@ export default function Index() {
 
           <Reveal delay={0.2}>
             <p className="text-center text-white/60 text-sm mb-6">
-              Андрей Дорошенко · Санкт-Петербург · 5 компаний в октябре
+              Андрей Дорошенко · Санкт-Петербург · октябрь
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
               <a href="tel:89206200034" className="flex items-center gap-2 gold-text hover:opacity-70 transition-opacity">
@@ -817,7 +609,7 @@ export default function Index() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <p className="font-cormorant text-lg gold-text">Андрей Дорошенко</p>
-            <p className="text-white/25 text-xs mt-1">Моя технология × ваш отдел продаж</p>
+            <p className="text-white/25 text-xs mt-1">Рыночный тест продаж · Санкт-Петербург</p>
           </div>
           <div className="flex gap-4">
             <a href="https://t.me/adprodmarketing" target="_blank" rel="noopener noreferrer"

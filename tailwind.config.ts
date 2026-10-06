@@ -90,6 +90,10 @@ export default {
 					'0%': { backgroundPosition: '-200% center' },
 					'100%': { backgroundPosition: '200% center' },
 				},
+				'ticker': {
+					from: { transform: 'translateX(0)' },
+					to: { transform: 'translateX(-33.333%)' }
+				},
 				'line-grow': {
 					from: { width: '0' },
 					to: { width: '100%' }
@@ -105,6 +109,7 @@ export default {
 				'fade-in': 'fade-in 1s ease-out forwards',
 				'shimmer': 'shimmer 3s linear infinite',
 				'line-grow': 'line-grow 0.8s ease-out 0.5s forwards',
+				'ticker': 'ticker 30s linear infinite',
 			}
 		}
 	},
